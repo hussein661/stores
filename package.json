@@ -1,0 +1,22 @@
+{
+  "name": "vue-nuxt-storyblok-boilerplate",
+  "version": "1.0.0",
+  "description": "Nuxt.js Storyblok Boilerplate",
+  "author": "Alexander Feiglstorfer <delooks@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@fortawesome/vue-fontawesome": "^3.0.0-3",
+    "cross-env": "^7.0.2",
+    "nuxt": "^2.11.0",
+    "storyblok-nuxt": "1.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
