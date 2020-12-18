@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <div class="store-wrapper">
-    <div class="img">
+    <div class="img home-image">
       <img :src="store.content.image" />
     </div>
     <div class="typo">
@@ -56,7 +56,8 @@ export default {
 .img {
   overflow: hidden;
   width: 40%;
-    /* transform: skewX(-10deg); */
+}
+.home-image {
     margin-left: -15px;
 
 }
