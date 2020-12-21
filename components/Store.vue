@@ -30,8 +30,9 @@ export default {
 }
 
 .store-description {
-  font-size: 18px;
-  color: lightslategray;
+  margin: 6px 0;
+  font-size: 14px;
+  color: #acacac;
     overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -52,6 +53,13 @@ export default {
   transform: skewX(-10deg);
   overflow: hidden;
 
+}
+@media (max-width: 700px){
+.store-wrapper {
+  height: 120px;
+  margin: 20px auto;
+
+}
 }
 .img {
   overflow: hidden;

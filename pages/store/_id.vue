@@ -6,24 +6,38 @@
     <div class="item-contents">
       <div class="details-texts">
         <h2 class="store-name">{{ store.content.title }}</h2>
+        <div class="sub_title">{{ store.content.sub_title }}</div>
         <div class="store-description">{{ store.content.description }}</div>
       </div>
 
-      <hr />
-      <div class="pro-discount" v-if="store.content.discount">
+      <div class="pro-discount" v-if="store.content.discount && store.content.discount.length">
         <div class="discount" >
-          <div class="flex">
-            <div>
-              <div class="discount-text">Discount</div>
-              <div class="discount-desc">{{ store.content.discount }}</div>
+          <div class="disc-wrapper">
+              <div class="disc-img"><img src="https://www.onlygfx.com/wp-content/uploads/2018/04/discount-stamp-2-1024x788.png" /></div>
+            <div class="discount-texts">
+              <div class="discount-text">{{ store.content.discount[0].discount_title }}</div>
+              <div class="discount-desc">{{ store.content.discount[0].discount_description }}</div>
             </div>
             <div class="sendme">
               <button class="sendv-btn" @click="isVouncherOpen = true">Send me the voucher</button>
             </div>
           </div>
         </div>
-
-        <h4 class="discount">{{ store.content.promotion }}</h4>
+        <div v-if="store.content.promotion && store.content.promotion.length">
+         <a :href="store.content.promotion[0].link_to" target="_blank">
+               <div class="discount promotion" >
+          <div class="disc-wrapper">
+              <div class="disc-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCOHpYWxoVA19lOVgfRCKhkgNu1Cml8ARydg&usqp=CAU" /></div>
+            <div class="discount-texts">
+              <div class="discount-text">{{ store.content.promotion[0].promotion_title }}</div>
+              <div class="discount-desc">{{ store.content.promotion[0].promotion_description }}</div>
+            </div>
+                        <div class="sendme">
+            </div>
+          </div>
+        </div>
+        </a>
+        </div>
       </div>
       <div class="Order-now">
         ORDER NOW!
@@ -47,22 +61,29 @@
           </div>
         </div>
       </div>
-      <div class="location-wrapper" v-if="store.content.location">
-        <hr />
+        <hr v-if="store.content.location && store.content.location.length" />
+      <div class="location-wrapper-main" v-if="store.content.location && store.content.location.length">
+      <div class="location-wrapper" v-for="(loc,i) in  store.content.location" :key="i">
         <div class="location">
-          <location />
-          <div class="text">{{ store.content.location }}</div>
+          <div>
+          <img src="https://img2.storyblok.com/350x350/f/92215/1400x788/ce176a3ebb/googlemaps.jfif" />
+          </div>
+          <div>
+          <div class="location-title">{{ loc.location_title }}</div>
+          <div class="location-description">{{ loc.location_description }}</div>
+          </div>
         </div>
       </div>
-    </div>
+      </div>
     <div class="socials" v-if="store.content.social_links && store.content.social_links.length">
       <hr />
-      <h3 class="text-center">Contact us on :</h3>
+      <h3 class="">Find us also on</h3>
       <div class="social-links">
         <div
           class="social-link"
           v-for="slink in store.content.social_links"
           :key="slink.provider"
+          :class="slink.provider"
         >
           <div class="icon">
             <a :href="slink.link" target="_blank"
@@ -72,6 +93,7 @@
         </div>
       </div>
     </div>
+    </div>
     <div v-if="isVouncherOpen">
       <div class="background-voucher" @click="isVouncherOpen = false"/>
       <div class="container-voucher">
@@ -79,8 +101,8 @@
           <h3 class="text">
             Claim your voucher
           </h3>
-          <p>
-            Enter your phone number and recieve your voucher via SMS and {{store.content.discount}}
+          <p class="claim-text">
+            Enter your phone number and recieve your voucher via SMS and {{store.content.discount[0].discount_title}}
           </p>
       <div class="input">
         <input placeholder="enter your number" />
@@ -129,10 +151,20 @@ export default {
 </script>
 
 <style scoped>
+.sub_title{font-size:1.125rem;
+color:#595959;
+}
+
+h2 {
+    font-size: 2rem;}
 .item-contents {
-  padding: 15px;
   max-width: 700px;
   margin: 0 auto;
+}
+@media (max-width: 700px){
+  .item-contents {
+  padding: 15px;
+  }
 }
 .details-page {
   /* padding: 30px; */
@@ -142,12 +174,12 @@ export default {
   width: 100%;
   border-radius: 3px;
   cursor: pointer;
-  max-width: 1000px;
+  max-width: 700px;
   margin: 0 auto;
 }
 .img-main-details img {
   width: 100%;
-  max-height: 400px;
+  max-height: 300px;
   object-fit: cover;
 }
 .items {
@@ -185,9 +217,8 @@ export default {
 .Order-now {
   margin-top: 20px;
   font-size: 25px;
-  font-style: italic;
   font-weight: 500;
-  color: midnightblue;
+  text-transform: capitalize;
 }
 .flex {
   padding-top: 16px;
@@ -226,11 +257,25 @@ svg {
 .icon a {
   color: black;
 }
+.socials {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.socials h3 {
+  padding-top: 20px;
+}
 .social-links {
   display: flex;
-  justify-content: space-between;
-  max-width: 200px;
   margin: 20px auto;
+}
+.social-link {
+  margin-right: 20px;
+}
+.facebook svg{
+    color: #4267B2;
+}
+.instagram svg {
+  color: #DD2A7B;
 }
 .text-center {
   text-align: center;
@@ -241,8 +286,14 @@ svg {
   font-size: 18px;
   display: flex;
   justify-content: start;
-  align-items: center;
   color: lightslategray;
+}
+.location-title {
+  margin-bottom:7px ;
+  color: black;
+  font-size: 22px;
+  font-weight: 500;
+
 }
 .location svg {
   width: 30px;
@@ -260,14 +311,15 @@ svg {
 
 }
 .discount {
-  border: 1px solid lightslategray;
+     border: 1px solid #cbd5e0;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   margin: 20px auto;
 }
 .discount-text {
   font-weight: bold;
   font-size: 18px;
+  margin-bottom: 5px;
 }
 .sendv-btn:hover {
   background: rgb(106, 28, 28);
@@ -300,13 +352,20 @@ svg {
   top: 30%;
 
 }
+@media (max-width: 700px) {
+  .container-voucher .content { 
+    width: 94%;
+  }
 
+}
 .container-voucher input {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   border-radius: 4px;
-  border-color: brown;
   outline: none;
+  border: none;
+  border: 1px solid brown;
+  margin: 4px;
 }
 .container-voucher button {
   background: white;
@@ -326,5 +385,58 @@ svg {
   color: white;
   transition: .3s;
 
+}
+.disc-img {
+  width: 25%;
+}
+.disc-img img {
+  width: 100px;
+}
+.promotion .disc-img  img{
+  width: 80px;
+  margin-left: 10px;
+}
+
+.disc-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+
+.discount-texts {
+max-width: 300px;
+width: 50%;
+}
+.sendme {
+  margin-left: 25px;
+}
+
+@media (max-width:700px){
+.disc-wrapper {
+  display: block;
+}
+.disc-wrapper > div {
+  width: 100%;
+  text-align: center;
+  margin: 10px auto;
+}
+}
+
+a,a:hover,a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.claim-text {
+  margin: 10px auto;
+  font-size: 14px;
+}
+
+.location-wrapper-main  {
+  display: grid;
+  grid-template-columns: repeat(2,50%);
+}
+.location-wrapper img {
+ width: 80px;
 }
 </style>
