@@ -436,6 +436,11 @@ a,a:hover,a:visited {
   display: grid;
   grid-template-columns: repeat(2,50%);
 }
+@media (max-width: 700px){
+.location-wrapper-main  {
+  display: block;
+}
+}
 .location-wrapper img {
  width: 80px;
 }
