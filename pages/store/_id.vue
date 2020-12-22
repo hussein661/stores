@@ -226,7 +226,7 @@ h2 {
   justify-content: space-between;
 }
 .item-texts {
-  width: 70%;
+  width: 66%;
 }
 .order-link .link {
   color: rgb(233, 83, 83);
