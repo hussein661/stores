@@ -63,7 +63,6 @@ export default {
   -moz-box-shadow: -1px 3px 5px 1px rgba(189, 189, 189, 1);
   box-shadow: -1px 3px 5px 1px rgba(189, 189, 189, 1);
   cursor: pointer;
-  transform: skewX(-10deg);
   overflow: hidden;
 
 }
@@ -84,7 +83,6 @@ export default {
 }
 .typo {
     width: 60%;
-    transform: skewX(10deg);
 
 }
 .img img {
