@@ -226,8 +226,10 @@ h2 {
   justify-content: space-between;
 }
 .item-texts {
-  width: 66%;
+  width: 70%;
 }
+
+
 .order-link .link {
   color: rgb(233, 83, 83);
   border: 1px solid rgb(233, 83, 83);
@@ -236,6 +238,10 @@ h2 {
   transition: 0.2s;
   cursor: pointer;
   text-decoration: none;
+}
+@media (max-width:380px){
+  .order-link .link {
+font-size: 4.5vmin;  }
 }
 .order-link .link:hover {
   color: white;

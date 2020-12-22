@@ -28,6 +28,19 @@ export default {
   font-size: 24px;
   color: black;
 }
+@media (max-width:700px){
+  .store-name {
+    font-size:18px;
+        overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  }
+  .store-description {
+    font-size: 14px;
+  }
+}
 
 .store-description {
   margin: 6px 0;
