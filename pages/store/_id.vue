@@ -5,7 +5,7 @@
     </div>
     <div class="item-contents">
       <div class="details-texts">
-        <h2 class="store-name">{{ store.content.title }}</h2>
+        <h2 class="store-name"><div class="profile-img"><img :src="store.content.logo || store.content.image" /></div><div>{{ store.content.title }}</div></h2>
         <div class="sub_title">{{ store.content.sub_title }}</div>
         <div class="store-description">{{ store.content.description }}</div>
       </div>
@@ -126,7 +126,7 @@ export default {
 
     head(){
     return {
-      title:`Menasa - ${this.store.content.title}`,
+      title:`Hala - ${this.store.content.title}`,
       meta: [
         {
           hid: 'og:image',
@@ -468,5 +468,25 @@ a,a:hover,a:visited {
 }
 .location-wrapper img {
  width: 80px;
+}
+
+.store-name {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid wheat;
+  margin: 5px 12px 5px 0;
+}
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>

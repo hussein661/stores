@@ -54,10 +54,10 @@ export default {
 }
 
 .store-wrapper {
-  margin: 50px auto;
+  margin: 20px auto;
   max-width: 700px;
   width: 90%;
-  max-height: 170px;
+  max-height: 140px;
   display: flex;
   -webkit-box-shadow: -1px 3px 5px 1px rgba(189, 189, 189, 1);
   -moz-box-shadow: -1px 3px 5px 1px rgba(189, 189, 189, 1);
@@ -77,10 +77,7 @@ export default {
   overflow: hidden;
   width: 40%;
 }
-.home-image {
-    margin-left: -15px;
 
-}
 .typo {
     width: 60%;
 
