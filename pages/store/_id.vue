@@ -261,6 +261,7 @@ h2 {
   cursor: pointer;
   width: 100%;
   text-decoration: none;
+  white-space: nowrap;
 }
 @media (max-width:780px){
   .order-link .link {
