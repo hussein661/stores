@@ -102,7 +102,7 @@
             Claim your voucher
           </h3>
           <p class="claim-text">
-            Enter your phone number and recieve your voucher via SMS and {{store.content.discount[0].discount_title}}
+            Enter your phone number and receive your voucher via SMS and {{store.content.discount[0].discount_title}}
           </p>
       <div class="input">
         <input placeholder="enter your number" />

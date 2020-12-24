@@ -107,12 +107,14 @@ span {
   align-content: center;
   display: flex;
   text-align: center;
-  margin: 20px auto;
-  font-size: 26px;
+  margin: 10px auto;
+  font-size: 24px;
 }
 
 .logo-image img {
-  width: 90px;
+  width: 75px;
+      height: 100%;
+    object-fit: contain;
 }
 
 .socials span {
