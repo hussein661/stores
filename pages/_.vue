@@ -12,10 +12,28 @@
 import Store from '../components/Store'
 
 export default {
+
+  head(){
+    return {
+      title:'Menasa stores',
+      meta: [
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          // content: imgURL || this.$env.NUXT_ENV_BASE_URL + '/logo.png'
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Welcome to menasa stores`
+        }
+      ]
+    }
+  },
   components:{
     Store
   },
-      mounted () {
+    mounted () {
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
       if (event.action == 'input') {
         if (event.story.id === this.story.id) {

@@ -123,12 +123,31 @@ import linkedin from "../../components/icons/Linkedin";
 import location from "../../components/icons/Location";
 
 export default {
+
+    head(){
+    return {
+      title:`Menasa - ${this.store.content.title}`,
+      meta: [
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.store.content.image
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Check now ${this.store.content.title} restaurant at Menasa`
+        }
+      ]
+    }
+  },
   components: {
     facebook,
     instagram,
     linkedin,
     location
   },
+  
   data(){
     return {
     isVouncherOpen:false
