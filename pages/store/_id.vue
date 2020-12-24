@@ -126,7 +126,7 @@ export default {
 
     head(){
     return {
-      title:`Hala - ${this.store.content.title}`,
+      title:`Hala ${this.store.content.title}`,
       meta: [
         {
           hid: 'og:image',
