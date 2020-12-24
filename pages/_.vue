@@ -7,7 +7,7 @@
           ><img :src="require('~/static/menasa-logo.jpg')"
         /></span>
       </div>
-      <div class="page-title socials">
+      <!-- <div class="page-title socials">
         <span class="logo-image"
           ><a href="https://www.facebook.com/menasanet" target="_blank"
             ><img :src="require('~/static/social/fb.png')"/></a></span
@@ -18,7 +18,7 @@
           ><span class="logo-image"
             ><img :src="require('~/static/social/in.png')"/></span
         ></a>
-      </div>
+      </div> -->
     </div>
     <div class="store-array">
       <div
@@ -108,11 +108,11 @@ span {
   display: flex;
   text-align: center;
   margin: 20px auto;
-  font-size: 28px;
+  font-size: 26px;
 }
 
 .logo-image img {
-  width: 95px;
+  width: 90px;
 }
 
 .socials span {
