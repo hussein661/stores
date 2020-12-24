@@ -253,17 +253,23 @@ h2 {
 
 .order-link .link {
   color: rgb(233, 83, 83);
+  font-size: 16px;
   border: 1px solid rgb(233, 83, 83);
-  padding: 5px;
+  padding: 4px;
   border-radius: 6px;
   transition: 0.2s;
   cursor: pointer;
   width: 100%;
   text-decoration: none;
 }
+@media (max-width:780px){
+  .order-link .link {
+/* font-size: 2.1vmin; */
+  }
+}
 @media (max-width:380px){
   .order-link .link {
-font-size: 4.5vmin;  }
+font-size: 4.1vmin;  }
 }
 .order-link .link:hover {
   color: white;
