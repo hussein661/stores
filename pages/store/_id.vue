@@ -161,6 +161,7 @@ import facebook from "../../components/icons/Facebook";
 import instagram from "../../components/icons/Instagram";
 import linkedin from "../../components/icons/Linkedin";
 import location from "../../components/icons/Location";
+const dateFormat = require("dateformat");
 
 export default {
   head() {
