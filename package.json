@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.0-3",
+    "axios": "^0.21.1",
     "cross-env": "^7.0.2",
+    "dateformat": "^4.4.1",
     "nuxt": "^2.11.0",
     "storyblok-nuxt": "1.2.0"
   },

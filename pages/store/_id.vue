@@ -5,38 +5,63 @@
     </div>
     <div class="item-contents">
       <div class="details-texts">
-        <h2 class="store-name"><div class="profile-img"><img :src="store.content.logo || store.content.image" /></div><div>{{ store.content.title }}</div></h2>
+        <h2 class="store-name">
+          <div class="profile-img">
+            <img :src="store.content.logo || store.content.image" />
+          </div>
+          <div>{{ store.content.title }}</div>
+        </h2>
         <div class="sub_title">{{ store.content.sub_title }}</div>
         <div class="store-description">{{ store.content.description }}</div>
       </div>
 
-      <div class="pro-discount" v-if="store.content.discount && store.content.discount.length">
-        <div class="discount" >
+      <div
+        class="pro-discount"
+        v-if="store.content.discount && store.content.discount.length"
+      >
+        <div class="discount">
           <div class="disc-wrapper">
-              <div class="disc-img"><img src="https://www.onlygfx.com/wp-content/uploads/2018/04/discount-stamp-2-1024x788.png" /></div>
+            <div class="disc-img">
+              <img
+                src="https://www.onlygfx.com/wp-content/uploads/2018/04/discount-stamp-2-1024x788.png"
+              />
+            </div>
             <div class="discount-texts">
-              <div class="discount-text">{{ store.content.discount[0].discount_title }}</div>
-              <div class="discount-desc">{{ store.content.discount[0].discount_description }}</div>
+              <div class="discount-text">
+                {{ store.content.discount[0].discount_title }}
+              </div>
+              <div class="discount-desc">
+                {{ store.content.discount[0].discount_description }}
+              </div>
             </div>
             <div class="sendme">
-              <button class="sendv-btn" @click="isVouncherOpen = true">Send me the voucher</button>
+              <button class="sendv-btn" @click="isVouncherOpen = true">
+                Send me the voucher
+              </button>
             </div>
           </div>
         </div>
         <div v-if="store.content.promotion && store.content.promotion.length">
-         <a :href="store.content.promotion[0].link_to" target="_blank">
-               <div class="discount promotion" >
-          <div class="disc-wrapper">
-              <div class="disc-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCOHpYWxoVA19lOVgfRCKhkgNu1Cml8ARydg&usqp=CAU" /></div>
-            <div class="discount-texts">
-              <div class="discount-text">{{ store.content.promotion[0].promotion_title }}</div>
-              <div class="discount-desc">{{ store.content.promotion[0].promotion_description }}</div>
+          <a :href="store.content.promotion[0].link_to" target="_blank">
+            <div class="discount promotion">
+              <div class="disc-wrapper">
+                <div class="disc-img">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCOHpYWxoVA19lOVgfRCKhkgNu1Cml8ARydg&usqp=CAU"
+                  />
+                </div>
+                <div class="discount-texts">
+                  <div class="discount-text">
+                    {{ store.content.promotion[0].promotion_title }}
+                  </div>
+                  <div class="discount-desc">
+                    {{ store.content.promotion[0].promotion_description }}
+                  </div>
+                </div>
+                <div class="sendme"></div>
+              </div>
             </div>
-                        <div class="sendme">
-            </div>
-          </div>
-        </div>
-        </a>
+          </a>
         </div>
       </div>
       <div class="Order-now">
@@ -61,55 +86,70 @@
           </div>
         </div>
       </div>
-        <hr v-if="store.content.location && store.content.location.length" />
-      <div class="location-wrapper-main" v-if="store.content.location && store.content.location.length">
-      <div class="location-wrapper" v-for="(loc,i) in  store.content.location" :key="i">
-        <div class="location">
-          <div>
-          <img src="https://img2.storyblok.com/350x350/f/92215/1400x788/ce176a3ebb/googlemaps.jfif" />
-          </div>
-          <div>
-          <div class="location-title">{{ loc.location_title }}</div>
-          <div class="location-description">{{ loc.location_description }}</div>
-          </div>
-        </div>
-      </div>
-      </div>
-    <div class="socials" v-if="store.content.social_links && store.content.social_links.length">
-      <hr />
-      <h3 class="">Find us also on</h3>
-      <div class="social-links">
+      <hr v-if="store.content.location && store.content.location.length" />
+      <div
+        class="location-wrapper-main"
+        v-if="store.content.location && store.content.location.length"
+      >
         <div
-          class="social-link"
-          v-for="slink in store.content.social_links"
-          :key="slink.provider"
-          :class="slink.provider"
+          class="location-wrapper"
+          v-for="(loc, i) in store.content.location"
+          :key="i"
         >
-          <div class="icon">
-            <a :href="slink.link" target="_blank"
-              ><component :is="slink.provider"
-            /></a>
+          <div class="location">
+            <div>
+              <img
+                src="https://img2.storyblok.com/350x350/f/92215/1400x788/ce176a3ebb/googlemaps.jfif"
+              />
+            </div>
+            <div>
+              <div class="location-title">{{ loc.location_title }}</div>
+              <div class="location-description">
+                {{ loc.location_description }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <div
+        class="socials"
+        v-if="store.content.social_links && store.content.social_links.length"
+      >
+        <hr />
+        <h3 class="">Find us also on</h3>
+        <div class="social-links">
+          <div
+            class="social-link"
+            v-for="slink in store.content.social_links"
+            :key="slink.provider"
+            :class="slink.provider"
+          >
+            <div class="icon">
+              <a :href="slink.link" target="_blank"
+                ><component :is="slink.provider"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div v-if="isVouncherOpen">
-      <div class="background-voucher" @click="isVouncherOpen = false"/>
+      <div class="background-voucher" @click="isVouncherOpen = false" />
       <div class="container-voucher">
         <div class="content">
           <h3 class="text">
             Claim your voucher
           </h3>
           <p class="claim-text">
-            Enter your phone number and receive your voucher via SMS and {{store.content.discount[0].discount_title}}
+            Enter your phone number and receive your voucher via SMS and
+            {{ store.content.discount[0].discount_title }}
           </p>
-      <div class="input">
-        <input placeholder="enter your number" />
-      </div>
-      <div class="button">
-        <button class="send_me">Send me the voucher</button>
-      </div>
+          <div class="input">
+            <input placeholder="enter your number" />
+          </div>
+          <div class="button">
+            <button class="send_me">Send me the voucher</button>
+          </div>
         </div>
       </div>
     </div>
@@ -123,23 +163,22 @@ import linkedin from "../../components/icons/Linkedin";
 import location from "../../components/icons/Location";
 
 export default {
-
-    head(){
+  head() {
     return {
-      title:`Hala ${this.store.content.title}`,
+      title: `Hala ${this.store.content.title}`,
       meta: [
         {
-          hid: 'og:image',
-          property: 'og:image',
+          hid: "og:image",
+          property: "og:image",
           content: this.store.content.image
         },
         {
-          hid: 'description',
-          name: 'description',
+          hid: "description",
+          name: "description",
           content: `Check now ${this.store.content.title} restaurant at Menasa`
         }
       ]
-    }
+    };
   },
   components: {
     facebook,
@@ -147,18 +186,30 @@ export default {
     linkedin,
     location
   },
-  
-  data(){
-    return {
-    isVouncherOpen:false
 
-    }
+  data() {
+    return {
+      isVouncherOpen: false
+    };
+  },
+  mounted() {
+    this.$storybridge.on(["input", "published", "change"], event => {
+      if (event.action == "input") {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content;
+        }
+      } else {
+        window.location.reload();
+      }
+    });
   },
   asyncData(context) {
+    const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
+    const ts = new Date(date).getTime() / 1000;
     return context.app.$storyapi
-      .get("cdn/stories/stores/" + context.params.id, {         clear: 'auto',
-    type: 'memory',
-    cache:false })
+      .get("cdn/stories/stores/" + context.params.id, {
+        cv: ts
+      })
       .then(res => {
         return { store: res.data.story };
       })
@@ -170,19 +221,21 @@ export default {
 </script>
 
 <style scoped>
-.sub_title{font-size:1.125rem;
-color:#595959;
+.sub_title {
+  font-size: 1.125rem;
+  color: #595959;
 }
 
 h2 {
-    font-size: 2rem;}
+  font-size: 2rem;
+}
 .item-contents {
   max-width: 700px;
   margin: 0 auto;
 }
-@media (max-width: 700px){
+@media (max-width: 700px) {
   .item-contents {
-  padding: 15px;
+    padding: 15px;
   }
 }
 .details-page {
@@ -215,13 +268,12 @@ h2 {
   overflow: hidden;
   cursor: pointer;
   border-radius: 5px;
-
 }
 .branch img {
   height: 100%;
   width: 100%;
   object-fit: cover;
-      margin: 0;
+  margin: 0;
 }
 .item-title {
   font-size: 20px;
@@ -263,14 +315,15 @@ h2 {
   text-decoration: none;
   white-space: nowrap;
 }
-@media (max-width:780px){
+@media (max-width: 780px) {
   .order-link .link {
-/* font-size: 2.1vmin; */
+    /* font-size: 2.1vmin; */
   }
 }
-@media (max-width:380px){
+@media (max-width: 380px) {
   .order-link .link {
-font-size: 4.1vmin;  }
+    font-size: 4.1vmin;
+  }
 }
 .order-link .link:hover {
   color: white;
@@ -306,11 +359,11 @@ svg {
 .social-link {
   margin-right: 20px;
 }
-.facebook svg{
-    color: #4267B2;
+.facebook svg {
+  color: #4267b2;
 }
 .instagram svg {
-  color: #DD2A7B;
+  color: #dd2a7b;
 }
 .text-center {
   text-align: center;
@@ -324,11 +377,10 @@ svg {
   color: lightslategray;
 }
 .location-title {
-  margin-bottom:7px ;
+  margin-bottom: 7px;
   color: black;
   font-size: 22px;
   font-weight: 500;
-
 }
 .location svg {
   width: 30px;
@@ -342,11 +394,10 @@ svg {
   outline: none;
   border: none;
   cursor: pointer;
-  transform: .1s;
-
+  transform: 0.1s;
 }
 .discount {
-     border: 1px solid #cbd5e0;
+  border: 1px solid #cbd5e0;
   padding: 10px;
   border-radius: 4px;
   margin: 20px auto;
@@ -358,19 +409,17 @@ svg {
 }
 .sendv-btn:hover {
   background: rgb(106, 28, 28);
-  transform: .1s;
+  transform: 0.1s;
 }
-
 
 .background-voucher {
   background: rgba(0, 0, 0, 0.333);
-    width: 100%;
+  width: 100%;
   height: 100%;
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
-
 }
 .container-voucher {
   display: flex;
@@ -385,13 +434,11 @@ svg {
   text-align: center;
   position: fixed;
   top: 30%;
-
 }
 @media (max-width: 700px) {
-  .container-voucher .content { 
+  .container-voucher .content {
     width: 94%;
   }
-
 }
 .container-voucher input {
   width: 90%;
@@ -410,16 +457,15 @@ svg {
   color: brown;
   outline: none;
   cursor: pointer;
-  transform: .1s;
+  transform: 0.1s;
   margin: 10px 0;
-  transition: .3s;
+  transition: 0.3s;
 }
 .container-voucher button:hover {
   background: brown;
   border: 1px solid white;
   color: white;
-  transition: .3s;
-
+  transition: 0.3s;
 }
 .disc-img {
   width: 25%;
@@ -427,7 +473,7 @@ svg {
 .disc-img img {
   width: 100px;
 }
-.promotion .disc-img  img{
+.promotion .disc-img img {
   width: 80px;
   margin-left: 10px;
 }
@@ -437,27 +483,28 @@ svg {
   align-items: center;
 }
 
-
 .discount-texts {
-max-width: 300px;
-width: 50%;
+  max-width: 300px;
+  width: 50%;
 }
 .sendme {
   margin-left: 25px;
 }
 
-@media (max-width:700px){
-.disc-wrapper {
-  display: block;
-}
-.disc-wrapper > div {
-  width: 100%;
-  text-align: center;
-  margin: 10px auto;
-}
+@media (max-width: 700px) {
+  .disc-wrapper {
+    display: block;
+  }
+  .disc-wrapper > div {
+    width: 100%;
+    text-align: center;
+    margin: 10px auto;
+  }
 }
 
-a,a:hover,a:visited {
+a,
+a:hover,
+a:visited {
   text-decoration: none;
   color: inherit;
 }
@@ -467,17 +514,17 @@ a,a:hover,a:visited {
   font-size: 14px;
 }
 
-.location-wrapper-main  {
+.location-wrapper-main {
   display: grid;
-  grid-template-columns: repeat(2,50%);
+  grid-template-columns: repeat(2, 50%);
 }
-@media (max-width: 700px){
-.location-wrapper-main  {
-  display: block;
-}
+@media (max-width: 700px) {
+  .location-wrapper-main {
+    display: block;
+  }
 }
 .location-wrapper img {
- width: 80px;
+  width: 80px;
 }
 
 .store-name {

@@ -35,6 +35,8 @@
 
 <script>
 import Store from "../components/Store";
+import axios from "axios";
+const dateFormat = require("dateformat");
 
 export default {
   head() {
@@ -58,38 +60,38 @@ export default {
     Store
   },
   mounted() {
-    this.$storybridge.on(["input", "published", "change"], event => {
-      if (event.action == "input") {
-        if (event.story.id === this.story.id) {
-          this.story.content = event.story.content;
-        }
-      } else if (!event.slugChanged) {
-        window.location.reload();
-      }
+    const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
+    const ts = new Date(date).getTime() / 1000;
+    const url = `https://api.storyblok.com/v1/cdn/stories/?starts_with=stores%2F&version=published&cv=${ts}&token=YPJhIqzQepWQtUNNSVIPXAtt&per_page=100&sort_by=position:desc&clear=auto`;
+    axios.get(url).then(res => {
+      this.stores = res.data.stories;
     });
+    // this.$storybridge.on(["input", "published", "change"], event => {
+    //   if (event.action == "input") {
+    //     if (event.story.id === this.story.id) {
+    //       this.story.content = event.story.content;
+    //     }
+    //   } else if (!event.slugChanged) {
+    //     window.location.reload();
+    //   }
+    // });
   },
   data() {
-    return { stores: [] };
-  },
-  asyncData(context) {
-    console.log("getting");
-    return context.app.$storyapi
-      .get(`cdn/stories/`, {
-        starts_with: "stores/",
-        clear: "auto",
-        type: "memory",
-        cache: false
-      })
-      .then(res => {
-        console.log(res.data.stories);
-        return { stores: res.data.stories };
-      });
+    return { stores: [], random: 123456 };
   }
+  // asyncData(context) {
+  //   return context.app.$storyapi
+  //     .get(`cdn/stories/`, {
+  //     })
+  //     .then(res => {
+  //       console.log(res.data.stories);
+  //       return { stores: res.data.stories };
+  //     });
+  // }
 };
 </script>
 
 <style scoped>
-
 .page-title-wrapper {
   display: flex;
   max-width: 1100px;
@@ -113,8 +115,8 @@ span {
 
 .logo-image img {
   width: 75px;
-      height: 100%;
-    object-fit: contain;
+  height: 100%;
+  object-fit: contain;
 }
 
 .socials span {
@@ -127,6 +129,6 @@ span {
 
 .store-array {
   max-width: 800px;
-    margin: 0 auto;
+  margin: 0 auto;
 }
 </style>
