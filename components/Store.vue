@@ -5,8 +5,10 @@
       <img :src="store.content.image" />
     </div>
     <div class="typo">
+      <div>
       <div class="store-name">{{ store.content.title }}</div>
       <div class="store-description">{{ store.content.description }}</div>
+      </div>
     </div>
   </div>
   </div>

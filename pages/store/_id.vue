@@ -12,7 +12,12 @@
           <div>{{ store.content.title }}</div>
         </h2>
         <div class="sub_title">{{ store.content.sub_title }}</div>
+        <div class="flex">
         <div class="store-description">{{ store.content.description }}</div>
+              <div class="site-link">
+        <a class="visit" :href="store.content.link" target="_blank">Visit now !</a>
+      </div>
+      </div>
       </div>
 
       <div
@@ -297,6 +302,15 @@ h2 {
   display: flex;
   justify-content: space-between;
 }
+a.visit {
+  transition: .2s;
+  color: #dd2a7b !important;
+  
+}
+a.visit:hover {
+  color: #b12262 !important;
+  
+}
 .item-texts {
   width: 65%;
 }
@@ -545,6 +559,7 @@ a:visited {
 .profile-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  /* background: rgb(225, 225, 225); */
 }
 </style>
