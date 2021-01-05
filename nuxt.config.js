@@ -11,6 +11,7 @@ module.exports = {
   */
   head: {
     title: pkg.name,
+    
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -18,7 +19,14 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    script: [
+      {  
+          type: 'text/javascript', 
+          src: 'https://www.googletagmanager.com/gtag/js?id=G-EEQL8PR4B3',
+          async: true
+      }
+  ]
   },
 
   /*
