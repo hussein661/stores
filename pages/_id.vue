@@ -250,13 +250,13 @@
 </template>
 
 <script>
-import facebook from "../../components/icons/Facebook";
-import instagram from "../../components/icons/Instagram";
-import linkedin from "../../components/icons/Linkedin";
-import whatsApp from "../../components/icons/whatsApp";
-// import twitter from "../../components/icons/twitter";
-// import printest from "../../components/icons/printest";
-import snapchat from "../../components/icons/snapchat";
+import facebook from "../components/icons/Facebook";
+import instagram from "../components/icons/Instagram";
+import linkedin from "../components/icons/Linkedin";
+import whatsApp from "../components/icons/whatsApp";
+// import twitter from "../components/icons/twitter";
+// import printest from "../components/icons/printest";
+import snapchat from "../components/icons/snapchat";
 const dateFormat = require("dateformat");
 
 export default {
@@ -281,7 +281,6 @@ export default {
     facebook,
     instagram,
     linkedin,
-    location,
     whatsApp,
     snapchat
     // twitter,
@@ -290,7 +289,8 @@ export default {
 
   data() {
     return {
-      isVouncherOpen: false
+      isVouncherOpen: false,
+      store:{content:{}}
     };
   },
   mounted() {
@@ -300,7 +300,7 @@ export default {
           this.story.content = event.story.content;
         }
       } else {
-        window.location.reload();
+        // window.location.reload();
       }
     });
   },

@@ -25,7 +25,7 @@
         class="store"
         v-for="store in stores"
         :key="store.id"
-        @click="$router.push('store/' + store.slug)"
+        @click="$router.push('/' + store.slug)"
       >
         <Store :store="store" />
       </div>
@@ -86,7 +86,7 @@ export default {
     // }
   },
   data() {
-    return { stores: [], random: 123456 };
+    return { stores: []};
   }
   // asyncData(context) {
   //   return context.app.$storyapi
