@@ -13,11 +13,11 @@
         </h2>
         <div class="sub_title">{{ store.content.sub_title }}</div>
         <div class="flex">
-        <div class="store-description">{{ store.content.description }}</div>
-              <div class="site-link">
-        <!-- <a class="visit" :href="store.content.link" target="_blank">Visit now !</a> -->
-      </div>
-      </div>
+          <div class="store-description">{{ store.content.description }}</div>
+          <div class="site-link">
+            <!-- <a class="visit" :href="store.content.link" target="_blank">Visit now !</a> -->
+          </div>
+        </div>
       </div>
 
       <div
@@ -69,30 +69,68 @@
           </a>
         </div>
       </div>
-      <div class="Order-now">
-        ORDER NOW!
-      </div>
+      <div v-if="store.content.branches && store.content.branches.length">
+        <div class="Order-now">
+          {{ store.content.branches_title || "ORDER NOW!" }}
+        </div>
 
-      <div class="items">
-        <div
-          class="menu-item"
-          v-for="branch in store.content.branches"
-          :key="branch._uid"
-        >
-          <div class="branch img"><img :src="branch.image" /></div>
-          <div class="flex">
-            <div class="item-texts">
-              <div class="item-title">{{ branch.title }}</div>
-              <div class="item-description">{{ branch.description }}</div>
+        <div class="items">
+          <div
+            class="menu-item"
+            v-for="branch in store.content.branches"
+            :key="branch._uid"
+          >
+            <div class="branch img"><img :src="branch.image" /></div>
+            <div class="flex">
+              <div class="item-texts">
+                <div class="item-title">{{ branch.title }}</div>
+                <div class="item-description">{{ branch.description }}</div>
+              </div>
+              <div class="order-link">
+                <a class="link" :href="branch.link" target="_blank"
+                  >Order now</a
+                >
+              </div>
             </div>
-            <div class="order-link">
-              <a class="link" :href="branch.link" target="_blank">Order now</a>
+          </div>
+        </div>
+      </div>
+      <div v-if="store.content.products && store.content.products.length">
+        <div class="Order-now">
+          {{ store.content.products_title || "Discover products" }}
+        </div>
+
+        <div class="items">
+          <div
+            class="menu-item"
+            v-for="product in store.content.products"
+            :key="product._uid"
+          >
+            <div class="branch img"><img :src="product.image" /></div>
+            <div class="flex">
+              <div class="item-texts">
+                <div class="item-title">{{ product.title }}</div>
+                <div class="item-description">{{ product.description }}</div>
+              </div>
+              <div class="order-link">
+                <a class="link" :href="product.link" target="_blank"
+                  >Order now</a
+                >
+              </div>
             </div>
           </div>
         </div>
       </div>
       <hr v-if="store.content.location && store.content.location.length" />
-      <h3 class="" v-if="(store.content.location && store.content.location.length) || store.content.link">Come dine-in!</h3>
+      <h3
+        class=""
+        v-if="
+          (store.content.location && store.content.location.length) ||
+            store.content.link
+        "
+      >
+        {{store.content.locations_title || 'Come dine-in!'}}
+      </h3>
       <div
         class="location-wrapper-main"
         v-if="store.content.location && store.content.location.length"
@@ -104,9 +142,11 @@
         >
           <div class="location">
             <div>
+              <a :href="loc.location_link" target="_blank">
               <img
                 src="https://img2.storyblok.com/350x350/f/92215/1400x788/ce176a3ebb/googlemaps.jfif"
               />
+              </a>
             </div>
             <div>
               <div class="location-title">{{ loc.location_title }}</div>
@@ -117,23 +157,25 @@
           </div>
         </div>
       </div>
-            <div
+      <div
         class="visit-wrapper-main"
         v-if="store.content.link && store.content.link.length"
       >
-          <div class="location visit">
-            <div>
-              <img
-                src="https://www.logolynx.com/images/logolynx/90/90f01c273fb21b1ac4649bdd3da3375a.jpeg"
-              />
-            </div>
-            <div>
-              <div class="location-title">Visit our Website</div>
-              <div class="location-description">
-                <a :href="store.content.link" target="_blank">{{ store.content.link}}</a>
-              </div>
+        <div class="location visit">
+          <div>
+            <img
+              src="https://www.flaticon.com/svg/static/icons/svg/975/975645.svg"
+            />
+          </div>
+          <div>
+            <div class="location-title">Visit our Website</div>
+            <div class="location-description">
+              <a :href="store.content.link" target="_blank">{{
+                store.content.link
+              }}</a>
             </div>
           </div>
+        </div>
       </div>
       <div
         class="socials"
@@ -156,13 +198,34 @@
           </div>
         </div>
       </div>
-    </div>
-          <div class="footer">
-        <span>Hala</span> by
-        <span class="logo-image"
-          ><img :src="require('~/static/menasa-logo.jpg')"
-        /></span>
+            <div
+        class="socials"
+        v-if="store.content.apps && store.content.apps.length"
+      >
+        <hr />
+        <h3 class="">Get our apps</h3>
+        <div class="social-links">
+          <div
+            class="social-link"
+            v-for="app in store.content.apps"
+            :key="app.provider"
+            :class="app.provider"
+          >
+            <div class="icon">
+              <a :href="app.link" target="_blank"
+                ><component :is="app.provider"
+              /></a>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="footer">
+      <span>Hala</span> by
+      <span class="logo-image"
+        ><a href="https://www.menasa.net/" target="_blank"><img :src="require('~/static/menasa-logo.jpg')"
+      /></a></span>
+    </div>
     <div v-if="isVouncherOpen">
       <div class="background-voucher" @click="isVouncherOpen = false" />
       <div class="container-voucher">
@@ -190,7 +253,10 @@
 import facebook from "../../components/icons/Facebook";
 import instagram from "../../components/icons/Instagram";
 import linkedin from "../../components/icons/Linkedin";
-import location from "../../components/icons/Location";
+import whatsApp from "../../components/icons/whatsApp";
+import twitter from "../../components/icons/twitter";
+import printest from "../../components/icons/printest";
+import snapchat from "../../components/icons/snapchat";
 const dateFormat = require("dateformat");
 
 export default {
@@ -215,7 +281,11 @@ export default {
     facebook,
     instagram,
     linkedin,
-    location
+    location,
+    twitter,
+    whatsApp,
+    printest,
+    snapchat
   },
 
   data() {
@@ -236,7 +306,7 @@ export default {
   },
   asyncData(context) {
     const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
-    const ts = new Date(date).getTime() / 1000;
+    const ts = new Date().getTime() / 1000;
     return context.app.$storyapi
       .get("cdn/stories/stores/" + context.params.id, {
         cv: ts
@@ -328,13 +398,11 @@ h2 {
   justify-content: space-between;
 }
 a.visit {
-  transition: .2s;
+  transition: 0.2s;
   color: #dd2a7b !important;
-  
 }
 a.visit:hover {
   color: #b12262 !important;
-  
 }
 .item-texts {
   width: 65%;
@@ -389,7 +457,7 @@ svg {
   max-width: 700px;
   margin: 0 auto;
 }
- h3 {
+h3 {
   padding-top: 20px;
 }
 .social-links {
@@ -416,13 +484,11 @@ svg {
   justify-content: start;
   align-items: center;
   color: lightslategray;
-
 }
 .location img {
   width: 70px;
 }
 .location-title {
-  margin-bottom: 7px;
   color: black;
   font-size: 18px;
   font-weight: 500;
@@ -593,7 +659,6 @@ a:visited {
   /* background: rgb(225, 225, 225); */
 }
 
-
 .footer-wrapper {
   display: flex;
   max-width: 1100px;
@@ -623,12 +688,15 @@ span {
 }
 
 .location-description a {
-  transition: .2s;
+  transition: 0.2s;
 }
 .location-description a:hover {
   color: skyblue;
-}  
+}
+.visit {
+}
 .visit img {
-margin: 5px;
-}  
+  width: 50px;
+  margin: 8px 10px 0px 1px;
+}
 </style>

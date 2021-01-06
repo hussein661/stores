@@ -61,11 +61,12 @@ export default {
   width: 90%;
   max-height: 140px;
   display: flex;
-  -webkit-box-shadow: -1px 3px 5px 1px rgba(189, 189, 189, 1);
-  -moz-box-shadow: -1px 3px 5px 1px rgba(189, 189, 189, 1);
-  box-shadow: -1px 3px 5px 1px rgba(189, 189, 189, 1);
+      box-shadow: 0 10px 15px rgba(221,234,246,.5);
+
   cursor: pointer;
   overflow: hidden;
+  border-radius: 15px;
+
 
 }
 @media (max-width: 700px){

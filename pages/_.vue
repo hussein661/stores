@@ -4,8 +4,8 @@
       <div class="page-title">
         <span>Hala</span> by
         <span class="logo-image"
-          ><img :src="require('~/static/menasa-logo.jpg')"
-        /></span>
+          ><a href="https://www.menasa.net/" target="_blank"> <img :src="require('~/static/menasa-logo.jpg')" /></a>
+       </span>
       </div>
       <!-- <div class="page-title socials">
         <span class="logo-image"
@@ -41,7 +41,7 @@ const dateFormat = require("dateformat");
 export default {
   head() {
     return {
-      title: "Hala Menasa",
+      title: "Hala by Menasa",
       meta: [
         {
           hid: "og:image",
