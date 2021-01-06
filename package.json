@@ -16,7 +16,8 @@
     "cross-env": "^7.0.2",
     "dateformat": "^4.4.1",
     "nuxt": "^2.11.0",
-    "storyblok-nuxt": "1.2.0"
+    "storyblok-nuxt": "1.2.0",
+    "vue-gtag": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

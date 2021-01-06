@@ -15,7 +15,7 @@
         <div class="flex">
         <div class="store-description">{{ store.content.description }}</div>
               <div class="site-link">
-        <a class="visit" :href="store.content.link" target="_blank">Visit now !</a>
+        <!-- <a class="visit" :href="store.content.link" target="_blank">Visit now !</a> -->
       </div>
       </div>
       </div>
@@ -92,6 +92,7 @@
         </div>
       </div>
       <hr v-if="store.content.location && store.content.location.length" />
+      <h3 class="" v-if="(store.content.location && store.content.location.length) || store.content.link">Come dine-in!</h3>
       <div
         class="location-wrapper-main"
         v-if="store.content.location && store.content.location.length"
@@ -116,6 +117,24 @@
           </div>
         </div>
       </div>
+            <div
+        class="visit-wrapper-main"
+        v-if="store.content.link && store.content.link.length"
+      >
+          <div class="location visit">
+            <div>
+              <img
+                src="https://www.logolynx.com/images/logolynx/90/90f01c273fb21b1ac4649bdd3da3375a.jpeg"
+              />
+            </div>
+            <div>
+              <div class="location-title">Visit our Website</div>
+              <div class="location-description">
+                <a :href="store.content.link" target="_blank">{{ store.content.link}}</a>
+              </div>
+            </div>
+          </div>
+      </div>
       <div
         class="socials"
         v-if="store.content.social_links && store.content.social_links.length"
@@ -138,6 +157,12 @@
         </div>
       </div>
     </div>
+          <div class="footer">
+        <span>Hala</span> by
+        <span class="logo-image"
+          ><img :src="require('~/static/menasa-logo.jpg')"
+        /></span>
+      </div>
     <div v-if="isVouncherOpen">
       <div class="background-voucher" @click="isVouncherOpen = false" />
       <div class="container-voucher">
@@ -364,7 +389,7 @@ svg {
   max-width: 700px;
   margin: 0 auto;
 }
-.socials h3 {
+ h3 {
   padding-top: 20px;
 }
 .social-links {
@@ -389,12 +414,17 @@ svg {
   font-size: 18px;
   display: flex;
   justify-content: start;
+  align-items: center;
   color: lightslategray;
+
+}
+.location img {
+  width: 70px;
 }
 .location-title {
   margin-bottom: 7px;
   color: black;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
 }
 .location svg {
@@ -562,4 +592,43 @@ a:visited {
   object-fit: contain;
   /* background: rgb(225, 225, 225); */
 }
+
+
+.footer-wrapper {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+span {
+  color: crimson;
+  margin: 0 5px;
+}
+.page-wrapper {
+  padding-top: 20px;
+}
+.footer {
+  justify-content: center;
+  align-content: center;
+  display: flex;
+  text-align: center;
+  margin-top: 10px;
+  padding-bottom: 20px;
+  font-size: 18px;
+}
+
+.logo-image img {
+  width: 50px;
+  height: 100%;
+  object-fit: contain;
+}
+
+.location-description a {
+  transition: .2s;
+}
+.location-description a:hover {
+  color: skyblue;
+}  
+.visit img {
+margin: 5px;
+}  
 </style>

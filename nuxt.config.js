@@ -20,13 +20,13 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
-    script: [
-      {  
-          type: 'text/javascript', 
-          src: 'https://www.googletagmanager.com/gtag/js?id=G-EEQL8PR4B3',
-          async: true
-      }
-  ]
+  //   script: [
+  //     {  
+  //         type: 'text/javascript', 
+  //         src: 'https://www.googletagmanager.com/gtag/js?id=G-EEQL8PR4B3',
+  //         async: true
+  //     }
+  // ]
   },
 
   /*
@@ -45,7 +45,11 @@ module.exports = {
   */
   plugins: [
     '~/plugins/components',
-    '~/plugins/filters'
+    '~/plugins/filters',
+    {
+      src: './plugins/GoogleAnalytics.js',
+      mode: 'client'
+  }
   ],
 
   /*

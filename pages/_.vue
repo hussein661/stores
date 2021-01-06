@@ -75,15 +75,15 @@ export default {
     //     window.location.reload();
     //   }
     // });
-    if (window) {
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+    // if (window) {
+    //   window.dataLayer = window.dataLayer || [];
+    //   function gtag() {
+    //     dataLayer.push(arguments);
+    //   }
+    //   gtag("js", new Date());
 
-      gtag("config", "G-EEQL8PR4B3");
-    }
+    //   gtag("config", "G-EEQL8PR4B3");
+    // }
   },
   data() {
     return { stores: [], random: 123456 };
