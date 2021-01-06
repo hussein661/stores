@@ -253,10 +253,10 @@
 import facebook from "../../components/icons/Facebook";
 import instagram from "../../components/icons/Instagram";
 import linkedin from "../../components/icons/Linkedin";
-// import whatsApp from "../../components/icons/whatsApp";
+import whatsApp from "../../components/icons/whatsApp";
 // import twitter from "../../components/icons/twitter";
 // import printest from "../../components/icons/printest";
-// import snapchat from "../../components/icons/snapchat";
+import snapchat from "../../components/icons/snapchat";
 const dateFormat = require("dateformat");
 
 export default {
@@ -282,10 +282,10 @@ export default {
     instagram,
     linkedin,
     location,
+    whatsApp,
+    snapchat
     // twitter,
-    // whatsApp,
     // printest,
-    // snapchat
   },
 
   data() {
