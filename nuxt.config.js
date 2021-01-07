@@ -35,7 +35,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: 'red',height:'3px' },
 
   /*
   ** Global CSS
@@ -59,7 +59,36 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    ['storyblok-nuxt', {accessToken: 'YPJhIqzQepWQtUNNSVIPXAtt', cache: { type: 'none' }}]
+    ['storyblok-nuxt', {accessToken: 'YPJhIqzQepWQtUNNSVIPXAtt', cache: { type: 'none' }}],
+    [
+      'nuxt-i18n',
+      {
+        locales: ['en', 'ar'],
+        defaultLocale: 'en',
+        vueI18n: {
+          fallbackLocale: 'en',
+        },
+          lazy: true,
+  
+          locales: [
+            {
+              name: 'Arabic',
+              code: 'ar',
+              iso: 'ar-AR',
+              file: 'ar-AR.js'
+            },
+            {
+              name: 'English',
+              code: 'en',
+              iso: 'en-EN',
+              file: 'en-EN.js'
+            }
+          ],
+          loadLanguagesAsync: true,
+          langDir: 'assets/lang/',
+          defaultLocale: 'en'
+      }
+    ]
   ],
 
   /*

@@ -16,6 +16,7 @@
     "cross-env": "^7.0.2",
     "dateformat": "^4.4.1",
     "nuxt": "^2.11.0",
+    "nuxt-i18n": "^6.17.0",
     "storyblok-nuxt": "1.2.0",
     "vue-gtag": "^1.10.0"
   },

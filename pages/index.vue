@@ -2,14 +2,18 @@
   <div class="page-wrapper">
     <div class="page-title-wrapper">
       <div class="page-title">
-        <div class="hala-hand"><img src="https://i.pinimg.com/originals/85/7f/d7/857fd79dfd7bd025e4cbb2169cd46e03.png" /></div>
-        <span class="hala">Hala</span> by
+        <div class="hala-hand">
+          <img
+            src="https://i.pinimg.com/originals/85/7f/d7/857fd79dfd7bd025e4cbb2169cd46e03.png"
+          />
+        </div>
+        <span class="hala">{{hala}}</span> {{by}}
         <span class="logo-image"
           ><a href="https://www.menasa.net/" target="_blank">
-           <!-- <img :src="require('~/static/menasa-logo.jpg')" /> -->
-           Menasa
-           </a>
-       </span>
+            <!-- <img :src="require('~/static/menasa-logo.jpg')" /> -->
+            {{menasa}}
+          </a>
+        </span>
       </div>
       <!-- <div class="page-title socials">
         <span class="logo-image"
@@ -40,6 +44,7 @@
 <script>
 import Store from "../components/Store";
 import axios from "axios";
+import lang from '../mixins/language'
 const dateFormat = require("dateformat");
 
 export default {
@@ -50,7 +55,7 @@ export default {
         {
           hid: "og:image",
           property: "og:image",
-          content: 'http://localhost:9898/_nuxt/static/menasa-logo.jpg'
+          content: "http://localhost:9898/_nuxt/static/menasa-logo.jpg"
         },
         {
           hid: "description",
@@ -60,47 +65,42 @@ export default {
       ]
     };
   },
+  mixins:[lang],
   components: {
     Store
   },
   mounted() {
-    const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
-    const ts = new Date().getTime() / 1000;
-    const url = `https://api.storyblok.com/v1/cdn/stories/?starts_with=stores%2F&version=published&cv=${ts}&token=YPJhIqzQepWQtUNNSVIPXAtt&per_page=100&sort_by=position:asc&clear=auto`;
-    axios.get(url).then(res => {
-      this.stores = res.data.stories;
-    });
-    // this.$storybridge.on(["input", "published", "change"], event => {
-    //   if (event.action == "input") {
-    //     if (event.story.id === this.story.id) {
-    //       this.story.content = event.story.content;
-    //     }
-    //   } else if (!event.slugChanged) {
-    //     window.location.reload();
-    //   }
-    // });
-    // if (window) {
-    //   window.dataLayer = window.dataLayer || [];
-    //   function gtag() {
-    //     dataLayer.push(arguments);
-    //   }
-    //   gtag("js", new Date());
+    this.$nextTick(()=>{
+    this.getData();
 
-    //   gtag("config", "G-EEQL8PR4B3");
-    // }
+    })
+  },
+  methods: {
+    getData() {
+      this.$nuxt.$loading.start()
+      const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
+      const ts = new Date().getTime() / 1000;
+      const url = `https://api.storyblok.com/v1/cdn/stories/?starts_with=${this.$store.state.lang}stores%2F&version=published&cv=${ts}&token=YPJhIqzQepWQtUNNSVIPXAtt&per_page=100&sort_by=position:asc&clear=auto`;
+      axios.get(url).then(res => {
+        this.stores = res.data.stories;
+        this.$nuxt.$loading.finish()
+      });
+    }
   },
   data() {
-    return { stores: []};
+    return { stores: [] };
+  },
+  computed:{
+            hala(){
+      return !this.$store.state.lang ? 'Hala' : 'هلا'
+    },
+    by(){
+      return !this.$store.state.lang ? 'by' : 'من'
+    },
+    menasa(){
+      return !this.$store.state.lang ? 'Menasa' : 'منصة'
+    }
   }
-  // asyncData(context) {
-  //   return context.app.$storyapi
-  //     .get(`cdn/stories/`, {
-  //     })
-  //     .then(res => {
-  //       console.log(res.data.stories);
-  //       return { stores: res.data.stories };
-  //     });
-  // }
 };
 </script>
 
@@ -111,7 +111,7 @@ export default {
   margin: 0 auto;
 }
 span {
-  color: #1574F6;
+  color: #1574f6;
   margin: 0 5px;
 }
 .page-wrapper {
@@ -148,10 +148,10 @@ span {
 .logo-image a {
   color: black;
   text-decoration: none;
-  transition: .2s;
+  transition: 0.2s;
 }
 .logo-image a:hover {
-  color: #2A81FB;
+  color: #2a81fb;
   text-decoration: underline;
 }
 .hala-hand img {

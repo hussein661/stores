@@ -73,7 +73,7 @@
       </div>
       <div v-if="store.content.branches && store.content.branches.length">
         <div class="Order-now">
-          {{ store.content.branches_title || "ORDER NOW!" }}
+          {{ store.content.branches_title || ordernow }}!
         </div>
 
         <div class="items">
@@ -90,7 +90,7 @@
               </div>
               <div class="order-link">
                 <a class="link" :href="branch.link" target="_blank"
-                  >Order now</a
+                  >{{branch.button_text || ordernow}}</a
                 >
               </div>
             </div>
@@ -116,7 +116,7 @@
               </div>
               <div class="order-link">
                 <a class="link" :href="product.link" target="_blank"
-                  >Order now</a
+                  >{{product.button_text || ordernow}}</a
                 >
               </div>
             </div>
@@ -131,7 +131,7 @@
             store.content.link
         "
       >
-        {{ store.content.locations_title || "Come dine-in!" }}
+        {{ store.content.locations_title || comedine }}
       </h3>
       <div
         class="location-wrapper-main"
@@ -170,7 +170,7 @@
             />
           </div>
           <div>
-            <div class="location-title">Visit our Website</div>
+            <div class="location-title">{{visit}}</div>
             <div class="location-description">
               <a :href="store.content.link" target="_blank">{{
                 store.content.link
@@ -184,7 +184,7 @@
         v-if="store.content.social_links && store.content.social_links.length"
       >
         <div class="sep-border" />
-        <h3 class="">Find us also on</h3>
+        <h3 class="">{{findUs}}</h3>
         <div class="social-links">
           <div
             class="social-link"
@@ -226,7 +226,7 @@
       </div>
     </div>
     <div class="footer">
-      <span class="hala">Hala</span> by
+      <span class="hala">{{hala}}</span> {{by}}
       <span class="logo-image"
         ><a href="https://www.menasa.net/" target="_blank"
           ><img :src="require('~/static/menasa-logo.jpg')"/></a
@@ -267,6 +267,7 @@ import phone from "../components/icons/phone";
 import twitter from "../components/icons/twitter";
 import printest from "../components/icons/printest";
 import snapchat from "../components/icons/snapchat";
+import lang from '../mixins/language'
 const dateFormat = require("dateformat");
 
 export default {
@@ -287,6 +288,7 @@ export default {
       ]
     };
   },
+  mixins:[lang],
   components: {
     facebook,
     instagram,
@@ -318,11 +320,35 @@ export default {
         // window.location.reload();
       }
     });
-    this.getStore()
-  },
+    this.$nextTick(()=>{
+    this.getData()
 
+    })
+  },
+  computed:{
+    findUs(){
+      return !this.$store.state.lang ? 'Find us also on' : 'تواصل معنا ايضا عبر'
+    },
+    comedine(){
+      return !this.$store.state.lang ? 'Come dine-in!' : 'يمكنك زيارتنا في'
+    },
+        hala(){
+      return !this.$store.state.lang ? 'Hala' : 'هلا'
+    },
+    by(){
+      return !this.$store.state.lang ? 'by' : 'من'
+    },
+    ordernow(){
+      return !this.$store.state.lang ? 'Order now' : 'اطلب الان'
+    },
+    visit(){
+      return !this.$store.state.lang ? 'Visit our Website' : ' زيارة موقعنا الإلكتروني '
+      
+    }
+  },
   methods: {
-    getStore(){
+    getData(){
+    this.$nuxt.$loading.start()
     const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
     const ts = new Date().getTime() / 1000;
      this.$storyapi
@@ -331,9 +357,12 @@ export default {
       })
       .then(res => {
         this.store = res.data.story
+        this.$nuxt.$loading.finish()
       })
       .catch(error => {
         console.log(error);
+        this.$nuxt.$loading.finish()
+
       });
     },
     href(slink) {
@@ -418,7 +447,7 @@ h2 {
   margin-top: 20px;
   font-size: 25px;
   font-weight: 500;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 .flex {
   padding-top: 16px;

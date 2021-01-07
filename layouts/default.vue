@@ -1,43 +1,57 @@
 <template>
   <div>
-    <nuxt/>
-     <div class="langChange" @click="changeLang">{{lang ? 'EN' : 'AR'}}</div>
+    <nuxt />
+    <div class="langChange" @click="changeLang">{{ lang ? "EN" : "AR" }}</div>
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
-  beforeMount(){
-    const lang = localStorage.getItem('lang')
-    if(lang === 'ar/'){
-      this.$store.commit('setLang',lang)
-    }else {
-      return
+  beforeMount() {
+    const lang = localStorage.getItem("lang");
+    if (lang === "ar/") {
+      this.$store.commit("setLang", lang);
+    } else {
+      return;
     }
+
   },
-  methods:{
-    changeLang(){
-      const langp = 'ar/'
-      if(this.$store.state.lang === langp){
-        this.$store.commit('setLang','')
-        localStorage.removeItem('lang')
-      }else {
-        this.$store.commit('setLang',langp)
-        localStorage.setItem('lang',langp)
+  methods: {
+    changeLang() {
+      const langp = "ar/";
+      if (this.$store.state.lang === langp) {
+        this.$store.commit("setLang", "");
+        localStorage.removeItem("lang");
+      } else {
+        this.$store.commit("setLang", langp);
+        localStorage.setItem("lang", langp);
       }
-      window.location.reload()
     }
   },
-  computed:{
-    lang(){
-      return this.$store.state.lang
+  computed: {
+    lang() {
+      return this.$store.state.lang;
+    }
+  },
+  computed: mapState(["lang"]),
+  watch: {
+    lang(lng) {
+      const body = document.getElementsByTagName("BODY")[0];
+
+      if (lng === "ar/") {
+        body.style.direction = "rtl";
+      } else {
+        body.style.direction = "ltr";
+      }
     }
   }
-}
+};
 </script>
 <style>
 .langChange {
   position: fixed;
-  background: #1574F6;
+  background: #1574f6;
   top: 20px;
   right: 20px;
   padding: 4px;
@@ -49,19 +63,19 @@ export default {
   font-size: 12px;
 }
 @font-face {
-    font-family: "GothamRounded";
-    src: local("GothamRounded"),
-     url(~assets/fonts/GothamRounded-Medium.otf) format("truetype");
-     font-weight: bold;
+  font-family: "GothamRounded";
+  src: local("GothamRounded"),
+    url(~assets/fonts/GothamRounded-Medium.otf) format("truetype");
+  font-weight: bold;
 }
 @font-face {
-    font-family: "GothamRounded";
-    src: local("GothamRounded"),
-     url(~assets/fonts/GothamRounded-Book.otf) format("truetype");
-     font-weight: normal;
+  font-family: "GothamRounded";
+  src: local("GothamRounded"),
+    url(~assets/fonts/GothamRounded-Book.otf) format("truetype");
+  font-weight: normal;
 }
 html {
-font-family: 'GothamRounded';
+  font-family: "GothamRounded";
   font-size: 15px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -71,7 +85,9 @@ font-family: 'GothamRounded';
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   margin: 0;
 }
@@ -94,7 +110,6 @@ font-family: 'GothamRounded';
   flex: 1;
 }
 span.hala {
-  color: #1574F6;
+  color: #1574f6;
 }
 </style>
-
