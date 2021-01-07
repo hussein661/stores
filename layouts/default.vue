@@ -5,8 +5,20 @@
 </template>
 
 <style>
+@font-face {
+    font-family: "GothamRounded";
+    src: local("GothamRounded"),
+     url(~assets/fonts/GothamRounded-Medium.otf) format("truetype");
+     font-weight: bold;
+}
+@font-face {
+    font-family: "GothamRounded";
+    src: local("GothamRounded"),
+     url(~assets/fonts/GothamRounded-Book.otf) format("truetype");
+     font-weight: normal;
+}
 html {
-font-family: 'Inter', sans-serif;
+font-family: 'GothamRounded';
   font-size: 15px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

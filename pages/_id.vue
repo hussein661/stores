@@ -199,7 +199,7 @@
         </div>
       </div>
             <div
-        class="socials"
+        class="socials apps"
         v-if="store.content.apps && store.content.apps.length"
       >
         <hr />
@@ -213,8 +213,8 @@
           >
             <div class="icon">
               <a :href="app.link" target="_blank"
-                ><component :is="app.provider"
-              /></a>
+                ><img :src="app.os === 'googleplay' ? googlePlayLogo : appStoreLogo" />
+             </a>
             </div>
           </div>
         </div>
@@ -286,11 +286,12 @@ export default {
     // twitter,
     // printest,
   },
-
   data() {
     return {
       isVouncherOpen: false,
-      store:{content:{}}
+      store:{content:{}},
+      googlePlayLogo:'https://stratushealthcare.ie/wp-content/uploads/2020/02/google-play-badge.png',
+      appStoreLogo:'https://www.my-white.eu/wp-content/uploads/2017/04/app-store-logo.png'
     };
   },
   mounted() {
@@ -698,5 +699,8 @@ span {
 .visit img {
   width: 50px;
   margin: 8px 10px 0px 1px;
+}
+.apps img {
+  width: 100px;
 }
 </style>
