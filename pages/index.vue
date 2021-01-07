@@ -2,9 +2,13 @@
   <div class="page-wrapper">
     <div class="page-title-wrapper">
       <div class="page-title">
-        <span>Hala</span> by
+        <div class="hala-hand"><img src="https://i.pinimg.com/originals/85/7f/d7/857fd79dfd7bd025e4cbb2169cd46e03.png" /></div>
+        <span class="hala">Hala</span> by
         <span class="logo-image"
-          ><a href="https://www.menasa.net/" target="_blank"> <img :src="require('~/static/menasa-logo.jpg')" /></a>
+          ><a href="https://www.menasa.net/" target="_blank">
+           <!-- <img :src="require('~/static/menasa-logo.jpg')" /> -->
+           Menasa
+           </a>
        </span>
       </div>
       <!-- <div class="page-title socials">
@@ -45,8 +49,8 @@ export default {
       meta: [
         {
           hid: "og:image",
-          property: "og:image"
-          // content: imgURL || this.$env.NUXT_ENV_BASE_URL + '/logo.png'
+          property: "og:image",
+          content: 'http://localhost:9898/_nuxt/static/menasa-logo.jpg'
         },
         {
           hid: "description",
@@ -107,7 +111,7 @@ export default {
   margin: 0 auto;
 }
 span {
-  color: crimson;
+  color: #1574F6;
   margin: 0 5px;
 }
 .page-wrapper {
@@ -139,5 +143,18 @@ span {
 .store-array {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.logo-image a {
+  color: black;
+  text-decoration: none;
+  transition: .2s;
+}
+.logo-image a:hover {
+  color: #2A81FB;
+  text-decoration: underline;
+}
+.hala-hand img {
+  width: 30px;
 }
 </style>

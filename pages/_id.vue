@@ -121,7 +121,7 @@
           </div>
         </div>
       </div>
-      <hr v-if="store.content.location && store.content.location.length" />
+      <div class="sep-border" v-if="store.content.location && store.content.location.length" />
       <h3
         class=""
         v-if="
@@ -129,7 +129,7 @@
             store.content.link
         "
       >
-        {{store.content.locations_title || 'Come dine-in!'}}
+        {{ store.content.locations_title || "Come dine-in!" }}
       </h3>
       <div
         class="location-wrapper-main"
@@ -143,9 +143,9 @@
           <div class="location">
             <div>
               <a :href="loc.location_link" target="_blank">
-              <img
-                src="https://img2.storyblok.com/350x350/f/92215/1400x788/ce176a3ebb/googlemaps.jfif"
-              />
+                <img
+                  :src="require('@/assets/images/locationicon.jpg')"
+                />
               </a>
             </div>
             <div>
@@ -181,7 +181,7 @@
         class="socials"
         v-if="store.content.social_links && store.content.social_links.length"
       >
-        <hr />
+        <div class="sep-border" />
         <h3 class="">Find us also on</h3>
         <div class="social-links">
           <div
@@ -190,19 +190,20 @@
             :key="slink.provider"
             :class="slink.provider"
           >
+
             <div class="icon">
-              <a :href="slink.link" target="_blank"
+              <a :href="href(slink)" target="_blank"
                 ><component :is="slink.provider"
               /></a>
             </div>
           </div>
         </div>
       </div>
-            <div
+      <div
         class="socials apps"
         v-if="store.content.apps && store.content.apps.length"
       >
-        <hr />
+        <div class="sep-border" />
         <h3 class="">Get our apps</h3>
         <div class="social-links">
           <div
@@ -213,18 +214,21 @@
           >
             <div class="icon">
               <a :href="app.link" target="_blank"
-                ><img :src="app.os === 'googleplay' ? googlePlayLogo : appStoreLogo" />
-             </a>
+                ><img
+                  :src="app.os === 'googleplay' ? googlePlayLogo : appStoreLogo"
+                />
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="footer">
-      <span>Hala</span> by
+      <span class="hala">Hala</span> by
       <span class="logo-image"
-        ><a href="https://www.menasa.net/" target="_blank"><img :src="require('~/static/menasa-logo.jpg')"
-      /></a></span>
+        ><a href="https://www.menasa.net/" target="_blank"
+          ><img :src="require('~/static/menasa-logo.jpg')"/></a
+      ></span>
     </div>
     <div v-if="isVouncherOpen">
       <div class="background-voucher" @click="isVouncherOpen = false" />
@@ -254,8 +258,12 @@ import facebook from "../components/icons/Facebook";
 import instagram from "../components/icons/Instagram";
 import linkedin from "../components/icons/Linkedin";
 import whatsApp from "../components/icons/whatsApp";
-// import twitter from "../components/icons/twitter";
-// import printest from "../components/icons/printest";
+import email from "../components/icons/email";
+import phone from "../components/icons/phone";
+
+
+import twitter from "../components/icons/twitter";
+import printest from "../components/icons/printest";
 import snapchat from "../components/icons/snapchat";
 const dateFormat = require("dateformat");
 
@@ -282,16 +290,20 @@ export default {
     instagram,
     linkedin,
     whatsApp,
-    snapchat
-    // twitter,
-    // printest,
+    snapchat,
+    email,
+    phone,
+    twitter,
+    printest,
   },
   data() {
     return {
       isVouncherOpen: false,
-      store:{content:{}},
-      googlePlayLogo:'https://stratushealthcare.ie/wp-content/uploads/2020/02/google-play-badge.png',
-      appStoreLogo:'https://www.my-white.eu/wp-content/uploads/2017/04/app-store-logo.png'
+      store: { content: {} },
+      googlePlayLogo:
+        "https://stratushealthcare.ie/wp-content/uploads/2020/02/google-play-badge.png",
+      appStoreLogo:
+        "https://www.my-white.eu/wp-content/uploads/2017/04/app-store-logo.png"
     };
   },
   mounted() {
@@ -318,6 +330,17 @@ export default {
       .catch(error => {
         console.log(error);
       });
+  },
+  methods: {
+    href(slink) {
+      if (slink.provider === "email") {
+        return "mailto:" + slink.link;
+      }
+      if (slink.provider === "phone") {
+        return "tel:" + slink.link;
+      }
+      return slink.link;
+    }
   }
 };
 </script>
@@ -400,7 +423,7 @@ h2 {
 }
 a.visit {
   transition: 0.2s;
-  color: #dd2a7b !important;
+  color: #F76F87 !important;
 }
 a.visit:hover {
   color: #b12262 !important;
@@ -413,9 +436,9 @@ a.visit:hover {
 }
 
 .order-link .link {
-  color: rgb(233, 83, 83);
+  color: #F76F87;
   font-size: 16px;
-  border: 1px solid rgb(233, 83, 83);
+  border: 1px solid #F76F87;
   padding: 4px;
   border-radius: 6px;
   transition: 0.2s;
@@ -436,7 +459,7 @@ a.visit:hover {
 }
 .order-link .link:hover {
   color: white;
-  background: rgb(233, 83, 83);
+  background: #F76F87;
   transition: 0.2s;
   text-decoration: none;
 }
@@ -447,8 +470,8 @@ a.visit:hover {
 }
 
 svg {
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
 }
 
 .icon a {
@@ -463,7 +486,12 @@ h3 {
 }
 .social-links {
   display: flex;
-  margin: 20px auto;
+  margin: 10px auto;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+.social-links > div{
+  margin: 15px 15px 0 0;
 }
 .social-link {
   margin-right: 20px;
@@ -472,7 +500,7 @@ h3 {
   color: #4267b2;
 }
 .instagram svg {
-  color: #dd2a7b;
+  color: #F76F87;
 }
 .text-center {
   text-align: center;
@@ -486,9 +514,7 @@ h3 {
   align-items: center;
   color: lightslategray;
 }
-.location img {
-  width: 70px;
-}
+
 .location-title {
   color: black;
   font-size: 18px;
@@ -499,7 +525,7 @@ h3 {
   color: black;
 }
 .sendv-btn {
-  background: brown;
+  background: #F76F87;
   padding: 7px 15px;
   border-radius: 5px;
   color: white;
@@ -558,15 +584,15 @@ h3 {
   border-radius: 4px;
   outline: none;
   border: none;
-  border: 1px solid brown;
+  border: 1px solid #F76F87;
   margin: 4px;
 }
 .container-voucher button {
   background: white;
-  border: 1px solid brown;
+  border: 1px solid #F76F87;
   padding: 7px 15px;
   border-radius: 5px;
-  color: brown;
+  color: #F76F87;
   outline: none;
   cursor: pointer;
   transform: 0.1s;
@@ -574,7 +600,7 @@ h3 {
   transition: 0.3s;
 }
 .container-voucher button:hover {
-  background: brown;
+  background: #F76F87;
   border: 1px solid white;
   color: white;
   transition: 0.3s;
@@ -636,7 +662,8 @@ a:visited {
   }
 }
 .location-wrapper img {
-  width: 80px;
+  width: 50px;
+  margin-right: 8px;
 }
 
 .store-name {
@@ -666,7 +693,7 @@ a:visited {
   margin: 0 auto;
 }
 span {
-  color: crimson;
+  color: #1574F6;
   margin: 0 5px;
 }
 .page-wrapper {
@@ -702,5 +729,8 @@ span {
 }
 .apps img {
   width: 100px;
+}
+.sep-border {
+  border-top: 1px  solid #eaeaea;
 }
 </style>

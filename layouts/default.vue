@@ -50,5 +50,8 @@ font-family: 'GothamRounded';
 .column {
   flex: 1;
 }
+span.hala {
+  color: #1574F6;
+}
 </style>
 
