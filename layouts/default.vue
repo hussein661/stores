@@ -1,7 +1,7 @@
 <template>
   <div>
     <nuxt/>
-     <div class="langChange" @click="changeLang">{{!lang ? 'English' : 'العربية'}}</div>
+     <div class="langChange" @click="changeLang">{{lang ? 'EN' : 'AR'}}</div>
   </div>
 </template>
 <script>
@@ -40,13 +40,13 @@ export default {
   background: #1574F6;
   top: 20px;
   right: 20px;
-  padding: 6px;
-  width: 80px;
+  padding: 4px;
   border-radius: 5px;
   text-align: center;
   color: white;
   font-weight: bold;
   cursor: pointer;
+  font-size: 12px;
 }
 @font-face {
     font-family: "GothamRounded";
