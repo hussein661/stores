@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{fontar:lang === 'AR'}">
     <nuxt />
     <div class="langChange" @click="changeLang">{{ lang ? "EN" : "AR" }}</div>
   </div>
@@ -48,7 +48,12 @@ export default {
   }
 };
 </script>
+
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200&display=swap');
+.fontar {
+font-family: 'Tajawal', sans-serif !important;
+}
 .langChange {
   position: fixed;
   background: #1574f6;

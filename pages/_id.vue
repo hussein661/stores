@@ -14,12 +14,12 @@
         <div class="sub_title">{{ store.content.sub_title }}</div>
         <div class="flex">
           <div class="store-description">{{ store.content.description }}</div>
-          <div class="store-description">{{ store.test }}</div>
-
           <div class="site-link">
             <!-- <a class="visit" :href="store.content.link" target="_blank">Visit now !</a> -->
           </div>
         </div>
+            <div class="video" v-if="store.content.video_url"><video width="'100%'" height="240" controls><source  :src="store.content.video_url" /></video></div>
+
       </div>
 
       <div
@@ -765,5 +765,9 @@ span {
 }
 .sep-border {
   border-top: 1px  solid #eaeaea;
+}
+.video {
+  width: 100%;
+  margin: 30px auto;
 }
 </style>
