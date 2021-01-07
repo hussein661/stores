@@ -1,10 +1,14 @@
 export const state = () => ({
-  cacheVersion: ''
+  cacheVersion: '',
+  lang:''
 })
 
 export const mutations = {
   setCacheVersion (state, version) {
     state.cacheVersion = version
+  },
+  setLang(state,lang){
+    state.lang = lang
   }
 }
 

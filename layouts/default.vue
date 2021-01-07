@@ -1,10 +1,53 @@
 <template>
   <div>
     <nuxt/>
+     <div class="langChange" @click="changeLang">{{!lang ? 'English' : 'العربية'}}</div>
   </div>
 </template>
-
+<script>
+export default {
+  beforeMount(){
+    const lang = localStorage.getItem('lang')
+    if(lang === 'ar/'){
+      this.$store.commit('setLang',lang)
+    }else {
+      return
+    }
+  },
+  methods:{
+    changeLang(){
+      const langp = 'ar/'
+      if(this.$store.state.lang === langp){
+        this.$store.commit('setLang','')
+        localStorage.removeItem('lang')
+      }else {
+        this.$store.commit('setLang',langp)
+        localStorage.setItem('lang',langp)
+      }
+      window.location.reload()
+    }
+  },
+  computed:{
+    lang(){
+      return this.$store.state.lang
+    }
+  }
+}
+</script>
 <style>
+.langChange {
+  position: fixed;
+  background: #1574F6;
+  top: 20px;
+  right: 20px;
+  padding: 6px;
+  width: 80px;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
 @font-face {
     font-family: "GothamRounded";
     src: local("GothamRounded"),

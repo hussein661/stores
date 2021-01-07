@@ -14,6 +14,8 @@
         <div class="sub_title">{{ store.content.sub_title }}</div>
         <div class="flex">
           <div class="store-description">{{ store.content.description }}</div>
+          <div class="store-description">{{ store.test }}</div>
+
           <div class="site-link">
             <!-- <a class="visit" :href="store.content.link" target="_blank">Visit now !</a> -->
           </div>
@@ -316,22 +318,24 @@ export default {
         // window.location.reload();
       }
     });
+    this.getStore()
   },
-  asyncData(context) {
+
+  methods: {
+    getStore(){
     const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
     const ts = new Date().getTime() / 1000;
-    return context.app.$storyapi
-      .get("cdn/stories/stores/" + context.params.id, {
+     this.$storyapi
+      .get(`cdn/stories/${this.$store.state.lang}stores/` + this.$route.params.id, {
         cv: ts
       })
       .then(res => {
-        return { store: res.data.story };
+        this.store = res.data.story
       })
       .catch(error => {
         console.log(error);
       });
-  },
-  methods: {
+    },
     href(slink) {
       if (slink.provider === "email") {
         return "mailto:" + slink.link;
