@@ -62,7 +62,7 @@ export default {
   mounted() {
     const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
     const ts = new Date().getTime() / 1000;
-    const url = `https://api.storyblok.com/v1/cdn/stories/?starts_with=stores%2F&version=published&cv=${ts}&token=YPJhIqzQepWQtUNNSVIPXAtt&per_page=100&sort_by=position:desc&clear=auto`;
+    const url = `https://api.storyblok.com/v1/cdn/stories/?starts_with=stores%2F&version=published&cv=${ts}&token=YPJhIqzQepWQtUNNSVIPXAtt&per_page=100&sort_by=position:asc&clear=auto`;
     axios.get(url).then(res => {
       this.stores = res.data.stories;
     });
