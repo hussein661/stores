@@ -1,5 +1,5 @@
 <template>
-  <div :class="{fontar:lang === 'AR'}">
+  <div :class="{fontar:lang === 'ar/'}">
     <nuxt />
     <div class="langChange" @click="changeLang">{{ lang ? "EN" : "AR" }}</div>
   </div>
@@ -8,7 +8,7 @@
 import { mapState } from "vuex";
 
 export default {
-  beforeMount() {
+  mounted() {
     const lang = localStorage.getItem("lang");
     if (lang === "ar/") {
       this.$store.commit("setLang", lang);
@@ -51,9 +51,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200&display=swap');
-.fontar {
-font-family: 'Tajawal', sans-serif !important;
-}
+
 .langChange {
   position: fixed;
   background: #1574f6;
@@ -78,6 +76,16 @@ font-family: 'Tajawal', sans-serif !important;
   src: local("GothamRounded"),
     url(~assets/fonts/GothamRounded-Book.otf) format("truetype");
   font-weight: normal;
+}
+
+@font-face {
+  font-family: "FFShamelFamily";
+  src: local("FFShamelFamily"),
+    url(~assets/fonts/FFShamelFamily-SemiRoundBook.ttf) format("truetype");
+  font-weight: normal;
+}
+.fontar {
+font-family: 'FFShamelFamily', sans-serif !important;
 }
 html {
   font-family: "GothamRounded";

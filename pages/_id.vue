@@ -18,7 +18,7 @@
             <!-- <a class="visit" :href="store.content.link" target="_blank">Visit now !</a> -->
           </div>
         </div>
-            <div class="video" v-if="store.content.video_url"><video width="'100%'" height="240" controls><source  :src="store.content.video_url" /></video></div>
+            <div class="video" v-if="store.content.video_url"><video  controls><source  :src="store.content.video_url" /></video></div>
 
       </div>
 
@@ -73,7 +73,7 @@
       </div>
       <div v-if="store.content.branches && store.content.branches.length">
         <div class="Order-now">
-          {{ store.content.branches_title || ordernow }}!
+          {{ store.content.branches_title || getDirection }}!
         </div>
 
         <div class="items">
@@ -82,7 +82,7 @@
             v-for="branch in store.content.branches"
             :key="branch._uid"
           >
-            <div class="branch img"><img :src="branch.image" /></div>
+            <div class="branch img"><a class="link" :href="branch.link" target="_blank"><img :src="branch.image" /></a></div>
             <div class="flex">
               <div class="item-texts">
                 <div class="item-title">{{ branch.title }}</div>
@@ -90,7 +90,7 @@
               </div>
               <div class="order-link">
                 <a class="link" :href="branch.link" target="_blank"
-                  >{{branch.button_text || ordernow}}</a
+                  >{{branch.button_text || getDirection}}</a
                 >
               </div>
             </div>
@@ -340,6 +340,9 @@ export default {
     },
     ordernow(){
       return !this.$store.state.lang ? 'Order now' : 'اطلب الان'
+    },
+        getDirection(){
+      return !this.$store.state.lang ? 'Get direction' : 'الاتجاه'
     },
     visit(){
       return !this.$store.state.lang ? 'Visit our Website' : ' زيارة موقعنا الإلكتروني '
@@ -766,8 +769,9 @@ span {
 .sep-border {
   border-top: 1px  solid #eaeaea;
 }
-.video {
+.video video {
   width: 100%;
   margin: 30px auto;
+  
 }
 </style>
