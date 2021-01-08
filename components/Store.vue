@@ -66,14 +66,27 @@ export default {
   cursor: pointer;
   overflow: hidden;
   border-radius: 15px;
+  line-height: 1.2;
 
 
 }
 @media (max-width: 700px){
 .store-wrapper {
-  height: 120px;
-  margin: 20px auto;
-
+    margin: 20px auto;
+    display: block;
+    width: 90%;
+    height: auto;
+    max-height: initial;
+    line-height: 1.2;
+    margin: 14px auto;
+}
+.store-wrapper .img {
+      overflow: hidden;
+    width: 100%;
+    border-radius: 0;
+    margin: 0 auto;
+    height: 200px;
+    object-fit: cover;
 }
 }
 .img {

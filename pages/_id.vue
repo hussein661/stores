@@ -195,9 +195,9 @@
           </div>
           <div>
             <div class="location-title">{{ visit }}</div>
-            <div class="location-description">
+            <div class="location-description" v-if="store.content && store.content.link">
               <a :href="store.content.link" target="_blank">{{
-                store.content.link
+                ((store.content.link).split('//')[1])
               }}</a>
             </div>
           </div>
@@ -295,7 +295,7 @@ const dateFormat = require("dateformat");
 export default {
   head() {
     return {
-      title: `Hala ${this.store.content.title || 'te2st'}`,
+      title: `Hala ${this.store.content.title || 'test'}`,
       meta: [
         {
           hid: "og:image",
@@ -332,8 +332,8 @@ export default {
         "https://www.my-white.eu/wp-content/uploads/2017/04/app-store-logo.png"
     };
   },
-  created() {
-      this.getData();
+  beforeMount() {
+      // this.getData();
   },
   computed: {
     findUs() {
@@ -372,6 +372,24 @@ export default {
         : "اكتشف المنتجات";
     }
   },
+    async asyncData(context) {
+      const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
+      const ts = new Date().getTime() / 1000;
+     return context.$storyapi
+        .get(
+          `cdn/stories/stores/` +
+            context.params.id,
+          {
+            cv: ts
+          }
+        )
+        .then(res => {
+          return {store:res.data.story};
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      },
   methods: {
     getData() {
       const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
