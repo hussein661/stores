@@ -332,7 +332,7 @@ export default {
         "https://www.my-white.eu/wp-content/uploads/2017/04/app-store-logo.png"
     };
   },
-  mounted() {
+  beforeMount() {
     this.$storybridge.on(["input", "published", "change"], event => {
       if (event.action == "input") {
         if (event.story.id === this.story.id) {
@@ -342,9 +342,7 @@ export default {
         // window.location.reload();
       }
     });
-    this.$nextTick(() => {
       this.getData();
-    });
   },
   computed: {
     findUs() {
@@ -380,7 +378,6 @@ export default {
   },
   methods: {
     getData() {
-      this.$nuxt.$loading.start();
       const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
       const ts = new Date().getTime() / 1000;
       this.$storyapi
@@ -393,11 +390,9 @@ export default {
         )
         .then(res => {
           this.store = res.data.story;
-          this.$nuxt.$loading.finish();
         })
         .catch(error => {
           console.log(error);
-          this.$nuxt.$loading.finish();
         });
     },
     href(slink) {
