@@ -295,17 +295,17 @@ const dateFormat = require("dateformat");
 export default {
   head() {
     return {
-      title: `Hala ${this.store.content.title}`,
+      title: `Hala ${this.$data.store.content.title || 'Menasa'}`,
       meta: [
         {
           hid: "og:image",
           property: "og:image",
-          content: this.store.content.image
+          content: this.$data.store.content.image
         },
         {
           hid: "description",
           name: "description",
-          content: `Check now ${this.store.content.title} restaurant at Menasa`
+          content: `Check now ${this.$data.store.content.title} restaurant at Menasa`
         }
       ]
     };
@@ -732,7 +732,7 @@ a:visited {
 }
 .location-wrapper img {
   width: 50px;
-  margin-right: 8px;
+  margin: 8px;
 }
 
 .store-name {
@@ -797,7 +797,7 @@ span {
 }
 .visit img {
   width: 50px;
-  margin: 8px 10px 0px 1px;
+  margin: 8px;
 }
 .apps img {
   width: 100px;
