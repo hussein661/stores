@@ -66,7 +66,7 @@ export default {
   cursor: pointer;
   overflow: hidden;
   border-radius: 15px;
-  line-height: 1.2;
+  line-height: 1.4;
 
 
 }
@@ -77,7 +77,6 @@ export default {
     width: 90%;
     height: auto;
     max-height: initial;
-    line-height: 1.2;
     margin: 14px auto;
 }
 .store-wrapper .img {
