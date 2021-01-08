@@ -79,6 +79,9 @@ export default {
     max-height: initial;
     margin: 14px auto;
 }
+.store-wrapper .typo {
+  width: 100%;
+}
 .store-wrapper .img {
       overflow: hidden;
     width: 100%;
