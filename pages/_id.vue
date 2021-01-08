@@ -84,7 +84,7 @@
 
       <div v-if="store.content.products && store.content.products.length">
         <div class="Order-now">
-          {{ store.content.products_title || "Discover products" }}
+          {{ store.content.products_title || discoverproducts}}
         </div>
 
         <div class="items">
@@ -332,16 +332,7 @@ export default {
         "https://www.my-white.eu/wp-content/uploads/2017/04/app-store-logo.png"
     };
   },
-  beforeMount() {
-    this.$storybridge.on(["input", "published", "change"], event => {
-      if (event.action == "input") {
-        if (event.story.id === this.story.id) {
-          this.story.content = event.story.content;
-        }
-      } else {
-        // window.location.reload();
-      }
-    });
+  created() {
       this.getData();
   },
   computed: {
@@ -375,6 +366,11 @@ export default {
         ? "closed"
         : "مغلق";
     },
+    discoverproducts(){
+            return !this.$store.state.lang
+        ? "Discover products"
+        : "اكتشف المنتجات";
+    }
   },
   methods: {
     getData() {
@@ -466,6 +462,7 @@ h2 {
 .item-title {
   font-size: 20px;
   color: black;
+  margin: 4px 0;
 }
 
 .item-description {
