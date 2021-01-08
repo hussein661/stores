@@ -1,5 +1,5 @@
 <template>
-  <div class="details-page">
+  <div class="details-page" v-if="fetched">
     <div class="img-main-details">
       <img :src="store.content.image" />
     </div>
@@ -197,7 +197,7 @@
             <div class="location-title">{{ visit }}</div>
             <div class="location-description" v-if="store.content && store.content.link">
               <a :href="store.content.link" target="_blank">{{
-                ((store.content.link).split('//')[1])
+                ((store.content.link).split('//')[1]).replace('/','')
               }}</a>
             </div>
           </div>
@@ -324,6 +324,7 @@ export default {
   },
   data() {
     return {
+      fetched:false,
       isVouncherOpen: false,
       store: { content: {} },
       googlePlayLogo:
@@ -333,7 +334,7 @@ export default {
     };
   },
   beforeMount() {
-      // this.getData();
+      this.getData();
   },
   computed: {
     findUs() {
@@ -404,6 +405,7 @@ export default {
         )
         .then(res => {
           this.store = res.data.story;
+          this.fetched = true
         })
         .catch(error => {
           console.log(error);
