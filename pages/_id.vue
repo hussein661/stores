@@ -295,17 +295,17 @@ const dateFormat = require("dateformat");
 export default {
   head() {
     return {
-      title: `Hala ${this.$data.store.content.title || 'Menasa'}`,
+      title: `Hala ${this.store.content.title || 'test'}`,
       meta: [
         {
           hid: "og:image",
           property: "og:image",
-          content: this.$data.store.content.image
+          content: this.store.content.image
         },
         {
           hid: "description",
           name: "description",
-          content: `Check now ${this.$data.store.content.title} restaurant at Menasa`
+          content: `Check now ${this.store.content.title} restaurant at Menasa`
         }
       ]
     };
