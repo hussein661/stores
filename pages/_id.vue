@@ -81,36 +81,7 @@
           </a>
         </div>
       </div>
-      <div v-if="store.content.branches && store.content.branches.length">
-        <div class="Order-now">
-          {{ store.content.branches_title || getDirection }}!
-        </div>
 
-        <div class="items">
-          <div
-            class="menu-item"
-            v-for="branch in store.content.branches"
-            :key="branch._uid"
-          >
-            <div class="branch img">
-              <a class="link" :href="branch.link" target="_blank"
-                ><img :src="branch.image"
-              /></a>
-            </div>
-            <div class="flex">
-              <div class="item-texts">
-                <div class="item-title">{{ branch.title }}</div>
-                <div class="item-description">{{ branch.description }}</div>
-              </div>
-              <div class="order-link">
-                <a class="link" :href="branch.link" target="_blank">{{
-                  branch.button_text || getDirection
-                }}</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div v-if="store.content.products && store.content.products.length">
         <div class="Order-now">
           {{ store.content.products_title || "Discover products" }}
@@ -126,7 +97,7 @@
             <div class="flex">
               <div class="item-texts">
                 <div class="item-title">{{ product.title }}</div>
-                <div class="item-description">{{ product.description }}</div>
+                
               </div>
               <div class="order-link">
                 <a class="link" :href="product.link" target="_blank">{{
@@ -134,6 +105,44 @@
                 }}</a>
               </div>
             </div>
+            <div class="item-description">{{ product.description }}</div>
+          </div>
+        </div>
+      </div>
+            <div v-if="store.content.branches && store.content.branches.length">
+        <div class="Order-now">
+          {{ store.content.branches_title || getDirection }}!
+        </div>
+
+        <div class="items">
+          <div
+            class="menu-item"
+            v-for="branch in store.content.branches"
+            :key="branch._uid"
+            
+          >
+          <div class="relative">
+            <div class="closed" v-if="branch.closed">
+              <div class="text-closed">{{closed}}</div>
+            </div>
+            <div class="branch img">
+              <a class="link" :href="branch.link" target="_blank" 
+                ><img :src="branch.image"
+              /></a>
+            </div>
+            <div class="flex">
+              <div class="item-texts">
+                <div class="item-title">{{ branch.title }}</div>
+              </div>
+              <div class="order-link">
+                <a class="link" :href="branch.link" target="_blank">{{
+                  branch.button_text || getDirection
+                }}</a>
+              </div>
+            </div>
+                <div class="item-description">{{ branch.description }}</div>
+
+          </div>
           </div>
         </div>
       </div>
@@ -362,7 +371,12 @@ export default {
       return !this.$store.state.lang
         ? "Visit our Website"
         : " زيارة موقعنا الإلكتروني ";
-    }
+    },
+        closed() {
+      return !this.$store.state.lang
+        ? "closed"
+        : "مغلق";
+    },
   },
   methods: {
     getData() {
@@ -460,7 +474,8 @@ h2 {
 }
 
 .item-description {
-  font-size: 16px;
+  font-size: 14px;
+  padding-top: 6px;
   color: lightslategray;
 }
 
@@ -804,5 +819,35 @@ span {
   .iframe-wrapper {
     height: 50vh;
   }
+}
+.relative {
+  position: relative;
+  padding: 3px;
+}
+.closed {
+  background: rgba(167, 167, 167,.4);
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+.text-closed {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  background: #f32013;
+  padding: 4px;
+  font-size: 17px;
+  color: white;
+  font-weight: bold;
+  transform: translateY(100px) skewY(-15deg)
 }
 </style>
