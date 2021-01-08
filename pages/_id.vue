@@ -19,8 +19,7 @@
           </div>
         </div>
         <div class="video" v-if="store.content.video_url">
-          <div style="position:relative;width: 72%;
-    height: 400px;">
+          <div class="iframe-wrapper">
             <iframe
               :src="store.content.video_url"
               style="position:absolute;top:0;left:0;width:100%;height:100%;"
@@ -794,5 +793,16 @@ span {
 .video video {
   width: 100%;
   margin: 30px auto;
+}
+
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+@media (max-width: 500px) {
+  .iframe-wrapper {
+    height: 50vh;
+  }
 }
 </style>
