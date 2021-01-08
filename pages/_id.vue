@@ -295,7 +295,7 @@ const dateFormat = require("dateformat");
 export default {
   head() {
     return {
-      title: `Hala ${this.store.content.title || 'test'}`,
+      title: `Hala ${this.store.content.title || 'te2st'}`,
       meta: [
         {
           hid: "og:image",
