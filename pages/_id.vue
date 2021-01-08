@@ -9,7 +9,7 @@
           <div class="profile-img">
             <img :src="store.content.logo || store.content.image" />
           </div>
-          <div>{{ store.content.title }}</div>
+          <div class="main-title">{{ store.content.title }}</div>
         </h2>
         <div class="sub_title">{{ store.content.sub_title }}</div>
         <div class="flex">
@@ -18,8 +18,19 @@
             <!-- <a class="visit" :href="store.content.link" target="_blank">Visit now !</a> -->
           </div>
         </div>
-            <div class="video" v-if="store.content.video_url"><video  controls><source  :src="store.content.video_url" /></video></div>
-
+        <div class="video" v-if="store.content.video_url">
+          <div style="position:relative;width: 72%;
+    height: 400px;">
+            <iframe
+              :src="store.content.video_url"
+              style="position:absolute;top:0;left:0;width:100%;height:100%;"
+              frameborder="0"
+              allow="autoplay; fullscreen"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <script src="https://player.vimeo.com/api/player.js"></script>
+        </div>
       </div>
 
       <div
@@ -82,16 +93,20 @@
             v-for="branch in store.content.branches"
             :key="branch._uid"
           >
-            <div class="branch img"><a class="link" :href="branch.link" target="_blank"><img :src="branch.image" /></a></div>
+            <div class="branch img">
+              <a class="link" :href="branch.link" target="_blank"
+                ><img :src="branch.image"
+              /></a>
+            </div>
             <div class="flex">
               <div class="item-texts">
                 <div class="item-title">{{ branch.title }}</div>
                 <div class="item-description">{{ branch.description }}</div>
               </div>
               <div class="order-link">
-                <a class="link" :href="branch.link" target="_blank"
-                  >{{branch.button_text || getDirection}}</a
-                >
+                <a class="link" :href="branch.link" target="_blank">{{
+                  branch.button_text || getDirection
+                }}</a>
               </div>
             </div>
           </div>
@@ -115,15 +130,18 @@
                 <div class="item-description">{{ product.description }}</div>
               </div>
               <div class="order-link">
-                <a class="link" :href="product.link" target="_blank"
-                  >{{product.button_text || ordernow}}</a
-                >
+                <a class="link" :href="product.link" target="_blank">{{
+                  product.button_text || ordernow
+                }}</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="sep-border" v-if="store.content.location && store.content.location.length" />
+      <div
+        class="sep-border"
+        v-if="store.content.location && store.content.location.length"
+      />
       <h3
         class=""
         v-if="
@@ -145,9 +163,7 @@
           <div class="location">
             <div>
               <a :href="loc.location_link" target="_blank">
-                <img
-                  :src="require('@/assets/images/locationicon.jpg')"
-                />
+                <img :src="require('@/assets/images/locationicon.jpg')" />
               </a>
             </div>
             <div>
@@ -170,7 +186,7 @@
             />
           </div>
           <div>
-            <div class="location-title">{{visit}}</div>
+            <div class="location-title">{{ visit }}</div>
             <div class="location-description">
               <a :href="store.content.link" target="_blank">{{
                 store.content.link
@@ -184,7 +200,7 @@
         v-if="store.content.social_links && store.content.social_links.length"
       >
         <div class="sep-border" />
-        <h3 class="">{{findUs}}</h3>
+        <h3 class="">{{ findUs }}</h3>
         <div class="social-links">
           <div
             class="social-link"
@@ -192,7 +208,6 @@
             :key="slink.provider"
             :class="slink.provider"
           >
-
             <div class="icon">
               <a :href="href(slink)" target="_blank"
                 ><component :is="slink.provider"
@@ -226,7 +241,7 @@
       </div>
     </div>
     <div class="footer">
-      <span class="hala">{{hala}}</span> {{by}}
+      <span class="hala">{{ hala }}</span> {{ by }}
       <span class="logo-image"
         ><a href="https://www.menasa.net/" target="_blank"
           ><img :src="require('~/static/menasa-logo.jpg')"/></a
@@ -263,11 +278,10 @@ import whatsApp from "../components/icons/whatsApp";
 import email from "../components/icons/email";
 import phone from "../components/icons/phone";
 
-
 import twitter from "../components/icons/twitter";
 import printest from "../components/icons/printest";
 import snapchat from "../components/icons/snapchat";
-import lang from '../mixins/language'
+import lang from "../mixins/language";
 const dateFormat = require("dateformat");
 
 export default {
@@ -288,7 +302,7 @@ export default {
       ]
     };
   },
-  mixins:[lang],
+  mixins: [lang],
   components: {
     facebook,
     instagram,
@@ -298,7 +312,7 @@ export default {
     email,
     phone,
     twitter,
-    printest,
+    printest
   },
   data() {
     return {
@@ -320,53 +334,58 @@ export default {
         // window.location.reload();
       }
     });
-    this.$nextTick(()=>{
-    this.getData()
-
-    })
+    this.$nextTick(() => {
+      this.getData();
+    });
   },
-  computed:{
-    findUs(){
-      return !this.$store.state.lang ? 'Find us also on' : 'تواصل معنا ايضا عبر'
+  computed: {
+    findUs() {
+      return !this.$store.state.lang
+        ? "Find us also on"
+        : "تواصل معنا ايضا عبر";
     },
-    comedine(){
-      return !this.$store.state.lang ? 'Come dine-in!' : 'يمكنك زيارتنا في'
+    comedine() {
+      return !this.$store.state.lang ? "Come dine-in!" : "يمكنك زيارتنا في";
     },
-        hala(){
-      return !this.$store.state.lang ? 'Hala' : 'هلا'
+    hala() {
+      return !this.$store.state.lang ? "Hala" : "هلا";
     },
-    by(){
-      return !this.$store.state.lang ? 'by' : 'من'
+    by() {
+      return !this.$store.state.lang ? "by" : "من";
     },
-    ordernow(){
-      return !this.$store.state.lang ? 'Order now' : 'اطلب الان'
+    ordernow() {
+      return !this.$store.state.lang ? "Order now" : "اطلب الآن";
     },
-        getDirection(){
-      return !this.$store.state.lang ? 'Get direction' : 'الاتجاه'
+    getDirection() {
+      return !this.$store.state.lang ? "Get direction" : "الاتجاه";
     },
-    visit(){
-      return !this.$store.state.lang ? 'Visit our Website' : ' زيارة موقعنا الإلكتروني '
-      
+    visit() {
+      return !this.$store.state.lang
+        ? "Visit our Website"
+        : " زيارة موقعنا الإلكتروني ";
     }
   },
   methods: {
-    getData(){
-    this.$nuxt.$loading.start()
-    const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
-    const ts = new Date().getTime() / 1000;
-     this.$storyapi
-      .get(`cdn/stories/${this.$store.state.lang}stores/` + this.$route.params.id, {
-        cv: ts
-      })
-      .then(res => {
-        this.store = res.data.story
-        this.$nuxt.$loading.finish()
-      })
-      .catch(error => {
-        console.log(error);
-        this.$nuxt.$loading.finish()
-
-      });
+    getData() {
+      this.$nuxt.$loading.start();
+      const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
+      const ts = new Date().getTime() / 1000;
+      this.$storyapi
+        .get(
+          `cdn/stories/${this.$store.state.lang}stores/` +
+            this.$route.params.id,
+          {
+            cv: ts
+          }
+        )
+        .then(res => {
+          this.store = res.data.story;
+          this.$nuxt.$loading.finish();
+        })
+        .catch(error => {
+          console.log(error);
+          this.$nuxt.$loading.finish();
+        });
     },
     href(slink) {
       if (slink.provider === "email") {
@@ -459,7 +478,7 @@ h2 {
 }
 a.visit {
   transition: 0.2s;
-  color: #F76F87 !important;
+  color: #f76f87 !important;
 }
 a.visit:hover {
   color: #b12262 !important;
@@ -472,9 +491,9 @@ a.visit:hover {
 }
 
 .order-link .link {
-  color: #F76F87;
+  color: #f76f87;
   font-size: 16px;
-  border: 1px solid #F76F87;
+  border: 1px solid #f76f87;
   padding: 4px;
   border-radius: 6px;
   transition: 0.2s;
@@ -495,7 +514,7 @@ a.visit:hover {
 }
 .order-link .link:hover {
   color: white;
-  background: #F76F87;
+  background: #f76f87;
   transition: 0.2s;
   text-decoration: none;
 }
@@ -526,7 +545,7 @@ h3 {
   margin-bottom: 25px;
   flex-wrap: wrap;
 }
-.social-links > div{
+.social-links > div {
   margin: 15px 15px 0 0;
 }
 .social-link {
@@ -536,7 +555,7 @@ h3 {
   color: #4267b2;
 }
 .instagram svg {
-  color: #F76F87;
+  color: #f76f87;
 }
 .text-center {
   text-align: center;
@@ -561,7 +580,7 @@ h3 {
   color: black;
 }
 .sendv-btn {
-  background: #F76F87;
+  background: #f76f87;
   padding: 7px 15px;
   border-radius: 5px;
   color: white;
@@ -620,15 +639,15 @@ h3 {
   border-radius: 4px;
   outline: none;
   border: none;
-  border: 1px solid #F76F87;
+  border: 1px solid #f76f87;
   margin: 4px;
 }
 .container-voucher button {
   background: white;
-  border: 1px solid #F76F87;
+  border: 1px solid #f76f87;
   padding: 7px 15px;
   border-radius: 5px;
-  color: #F76F87;
+  color: #f76f87;
   outline: none;
   cursor: pointer;
   transform: 0.1s;
@@ -636,7 +655,7 @@ h3 {
   transition: 0.3s;
 }
 .container-voucher button:hover {
-  background: #F76F87;
+  background: #f76f87;
   border: 1px solid white;
   color: white;
   transition: 0.3s;
@@ -714,7 +733,10 @@ a:visited {
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid wheat;
-  margin: 5px 12px 5px 0;
+  margin: 5px 0;
+}
+.main-title {
+  margin: 10px;
 }
 .profile-img img {
   width: 100%;
@@ -729,7 +751,7 @@ a:visited {
   margin: 0 auto;
 }
 span {
-  color: #1574F6;
+  color: #1574f6;
   margin: 0 5px;
 }
 .page-wrapper {
@@ -767,11 +789,10 @@ span {
   width: 100px;
 }
 .sep-border {
-  border-top: 1px  solid #eaeaea;
+  border-top: 1px solid #eaeaea;
 }
 .video video {
   width: 100%;
   margin: 30px auto;
-  
 }
 </style>
