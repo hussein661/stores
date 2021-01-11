@@ -803,7 +803,7 @@ span {
   height: 100%;
   object-fit: contain;
 }
-.logo-image > div {
+.footer > div {
       display: flex;
     align-items: center;
 }
