@@ -141,10 +141,19 @@
               </div>
             </div>
                 <div class="item-description">{{ branch.description }}</div>
-
           </div>
           </div>
         </div>
+      </div>
+            <div
+        class="sep-border"
+        v-if="store.content.location && store.content.location.length"
+      />
+      <div class="additional-links" v-if="menasa">
+        <div class="title">{{book}}</div>
+        <a href="https://www.menasa.net/en/book-a-demo/" target="_blank">
+        www.menasa.net/en/book-a-demo
+        </a>
       </div>
       <div
         class="sep-border"
@@ -376,6 +385,14 @@ export default {
             return !this.$store.state.lang
         ? "Discover products"
         : "اكتشف المنتجات";
+    },
+    book(){
+                  return !this.$store.state.lang
+        ? "Book a demo"
+        : "استكشف منصة";
+    },
+    menasa(){
+      return this.$route.params.id === 'menasa'
     }
   },
     async asyncData(context) {
@@ -876,5 +893,17 @@ span {
   color: white;
   font-weight: bold;
   transform: translateY(100px) skewY(-15deg)
+}
+.additional-links {
+  margin: 25px 0;
+}
+.additional-links * {
+  margin: 5px 0;
+}
+.additional-links .title {
+  font-size: 20px;
+}
+.additional-links a {
+  color: #1574f6;
 }
 </style>
