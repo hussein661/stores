@@ -249,11 +249,13 @@
       </div>
     </div>
     <div class="footer">
-      <span class="hala">{{ hala }}</span> {{ by }}
-      <span class="logo-image"
-        ><a href="https://www.menasa.net/" target="_blank"
-          ><img :src="require('~/static/menasa-logo.jpg')"/></a
-      ></span>
+     <div> <span class="hala">{{ hala }}</span> {{ by }}</div>
+     <div> <span class="logo-image" >
+       <a href="https://www.menasa.net/" target="_blank">
+          <menasalogo />
+          </a>
+      </span>
+    </div>
     </div>
     <div v-if="isVouncherOpen">
       <div class="background-voucher" @click="isVouncherOpen = false" />
@@ -290,6 +292,7 @@ import twitter from "../components/icons/twitter";
 import printest from "../components/icons/printest";
 import snapchat from "../components/icons/snapchat";
 import lang from "../mixins/language";
+import Menasalogo from '../components/icons/menasalogo.vue';
 const dateFormat = require("dateformat");
 
 export default {
@@ -320,9 +323,11 @@ export default {
     email,
     phone,
     twitter,
-    printest
+    printest,
+    Menasalogo
   },
   data() {
+    
     return {
       fetched:false,
       isVouncherOpen: false,
@@ -476,7 +481,7 @@ h2 {
 .branch img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   margin: 0;
 }
 .item-title {
@@ -798,7 +803,14 @@ span {
   height: 100%;
   object-fit: contain;
 }
-
+.logo-image > div {
+      display: flex;
+    align-items: center;
+}
+.logo-image svg{
+  width: 85px;
+  height: 85px;
+}
 .location-description a {
   transition: 0.2s;
 }
