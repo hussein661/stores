@@ -798,6 +798,9 @@ span {
   font-size: 18px;
 }
 
+.logo-image {
+  margin-left: -2px;
+}
 .logo-image img {
   width: 50px;
   height: 100%;
