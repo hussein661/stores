@@ -93,7 +93,7 @@
             v-for="product in store.content.products"
             :key="product._uid"
           >
-            <div class="branch img"><img :src="product.image" /></div>
+            <div class="branch img"><a class="link" :href="product.link" target="_blank"><img :src="product.image" /></a></div>
             <div class="flex">
               <div class="item-texts">
                 <div class="item-title">{{ product.title }}</div>

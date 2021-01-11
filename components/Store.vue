@@ -60,6 +60,7 @@ export default {
   max-width: 700px;
   width: 90%;
   max-height: 140px;
+  min-height: 120px;
   display: flex;
       box-shadow: 0 10px 15px rgba(221,234,246,.5);
 
