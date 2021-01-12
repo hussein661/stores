@@ -155,10 +155,6 @@
         www.menasa.net/en/book-a-demo
         </a>
       </div>
-      <div
-        class="sep-border"
-        v-if="store.content.location && store.content.location.length"
-      />
       <h3
         class=""
         v-if="
@@ -317,7 +313,7 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: `Check now ${this.store.content.title} restaurant at Menasa`
+          content: `Check now ${this.store.content.title} ${this.store.content.type} at Menasa`
         }
       ]
     };
@@ -495,11 +491,15 @@ h2 {
   cursor: pointer;
   border-radius: 5px;
 }
+.branch.img {
+  /* border: 1px solid #eaeaea; */
+}
 .branch img {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   margin: 0;
+  border-radius: 10px;
 }
 .item-title {
   font-size: 20px;
