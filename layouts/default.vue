@@ -1,7 +1,7 @@
 <template>
-  <div :class="{fontar:lang === 'ar/'}">
+  <div :class="{fontar:lang === 'ar/',en:lang !== 'ar/'}">
     <nuxt />
-    <div class="langChange" @click="changeLang">{{ lang ? "EN" : "AR" }}</div>
+    <div class="langChange" @click="changeLang">{{ lang ? "En" : "Ar" }}</div>
   </div>
 </template>
 <script>
@@ -53,18 +53,73 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200&display=swap');
 
 .langChange {
-  position: fixed;
-  background: #1574f6;
+  position: absolute;
+  background: #DDEAF6;
   top: 20px;
-  right: 20px;
-  padding: 4px;
-  border-radius: 5px;
+  left: 20px;
+  padding: 9px 15px 10px 14px;
+  border-radius: 12px;
   text-align: center;
-  color: white;
+  color: black;
   font-weight: bold;
   cursor: pointer;
   font-size: 12px;
+  width: 45px;
+  border-color: transparent;
+  height: 38px;
+  font-weight: bold;
+      display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.en .branch .order-link {
+  right: 20px !important;
+    left: auto !important;
+}
+.en .icon-wrap {
+  margin-left: 0  !important;
+  margin-right: 15px  !important;
+}
+
+.en .logo-svg-footer img{
+  margin-right: 10px !important;
+  margin-left: 0 !important;
+}
+
+.en .profile-img {
+      left: 40px  !important;
+    right: auto !important;
+}
+.en .site-visit {
+      left: auto  !important;
+    right: 40px !important;
+}
+
+.en .main-title {
+    /* margin: 10px; */
+    margin-left: 0  !important;
+}
+.en .social-links > div {
+  margin: 0 10px 0 0 !important;
+}
+
+.en .details-texts {
+  margin-left: 40px;
+  margin-bottom: 80px;
+}
+.details-texts {
+  margin-right: 40px;
+  margin-bottom: 80px;
+}
+@media (max-width: 700px){
+  .details-texts {
+    margin: 8vw;
+  margin-right: 4vw;
+
+  }
+}
+
+
 @font-face {
   font-family: "GothamRounded";
   src: local("GothamRounded"),
@@ -86,7 +141,10 @@ export default {
 }
 .fontar {
 font-family: 'FFShamelFamily', sans-serif !important;
+
 }
+
+
 html {
   font-family: "GothamRounded";
   font-size: 15px;
@@ -122,7 +180,5 @@ html {
 .column {
   flex: 1;
 }
-span.hala {
-  color: #1574f6;
-}
+
 </style>

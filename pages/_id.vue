@@ -2,13 +2,18 @@
   <div class="details-page" v-if="fetched">
     <div class="img-main-details">
       <img :src="store.content.image" />
+                <div class="profile-img">
+            <img :src="store.content.logo || store.content.image" />
+          </div>
+           <div class="site-visit">
+            <a :href="store.content.link" target="_blank">{{sitevisit}}</a>
+          </div>
     </div>
+
     <div class="item-contents">
       <div class="details-texts">
         <h2 class="store-name">
-          <div class="profile-img">
-            <img :src="store.content.logo || store.content.image" />
-          </div>
+
           <div class="main-title">{{ store.content.title }}</div>
         </h2>
         <div class="sub_title">{{ store.content.sub_title }}</div>
@@ -18,6 +23,26 @@
             <!-- <a class="visit" :href="store.content.link" target="_blank">Visit now !</a> -->
           </div>
         </div>
+                  <div
+        class="socials"
+        v-if="store.content.social_links && store.content.social_links.length"
+      >
+        <!-- <h3 class="">{{ findUs }}</h3> -->
+        <div class="social-links">
+          <div
+            class="social-link"
+            v-for="slink in store.content.social_links"
+            :key="slink.provider"
+            :class="slink.provider"
+          >
+            <div class="icon">
+              <a :href="href(slink)" target="_blank"
+                ><component :is="slink.provider"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
         <div class="video" v-if="store.content.video_url">
           <div class="iframe-wrapper">
             <iframe
@@ -93,17 +118,22 @@
             v-for="product in store.content.products"
             :key="product._uid"
           >
-            <div class="branch img"><a class="link" :href="product.link" target="_blank"><img :src="product.image" /></a></div>
+            <div class="branch img">
+                            <div class="order-link">
+                <a class="link" :href="product.link" target="_blank">
+                      <div class="order-icon">
+                        <span>{{ordernow}}</span>
+            <cartIcon />
+          </div>
+                </a>
+              </div>
+              <a class="link" :href="product.link" target="_blank"><img :src="product.image" /></a></div>
             <div class="flex">
               <div class="item-texts">
                 <div class="item-title">{{ product.title }}</div>
                 
               </div>
-              <div class="order-link">
-                <a class="link" :href="product.link" target="_blank">{{
-                  product.button_text || ordernow
-                }}</a>
-              </div>
+
             </div>
             <div class="item-description">{{ product.description }}</div>
           </div>
@@ -134,7 +164,7 @@
               <div class="item-texts">
                 <div class="item-title">{{ branch.title }}</div>
               </div>
-              <div class="order-link">
+              <div class="direction-link">
                 <a class="link" :href="branch.link" target="_blank">{{
                   branch.button_text || getDirection
                 }}</a>
@@ -174,13 +204,13 @@
           :key="i"
         >
           <div class="location">
-            <div>
+            <div class="icon-wrap">
               <a :href="loc.location_link" target="_blank">
-                <img :src="require('@/assets/images/locationicon.jpg')" />
+                <locationPin />
               </a>
             </div>
             <div>
-              <div class="location-title">{{ loc.location_title }}</div>
+              <div class="location-title text-blue">{{ loc.location_title }}</div>
               <div class="location-description">
                 {{ loc.location_description }}
               </div>
@@ -193,13 +223,11 @@
         v-if="store.content.link && store.content.link.length"
       >
         <div class="location visit">
-          <div>
-            <img
-              src="https://www.flaticon.com/svg/static/icons/svg/975/975645.svg"
-            />
+          <div class=" icon-wrap">
+            <webIcon />
           </div>
           <div>
-            <div class="location-title">{{ visit }}</div>
+            <div class="location-title text-blue">{{ visit }}</div>
             <div class="location-description" v-if="store.content && store.content.link">
               <a :href="store.content.link" target="_blank">{{
                 ((store.content.link).split('//')[1]).replace('/','')
@@ -208,27 +236,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="socials"
-        v-if="store.content.social_links && store.content.social_links.length"
-      >
-        <div class="sep-border" />
-        <h3 class="">{{ findUs }}</h3>
-        <div class="social-links">
-          <div
-            class="social-link"
-            v-for="slink in store.content.social_links"
-            :key="slink.provider"
-            :class="slink.provider"
-          >
-            <div class="icon">
-              <a :href="href(slink)" target="_blank"
-                ><component :is="slink.provider"
-              /></a>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div
         class="socials apps"
         v-if="store.content.apps && store.content.apps.length"
@@ -254,12 +262,13 @@
       </div>
     </div>
     <div class="footer">
-     <div> <span class="hala">{{ hala }}</span> {{ by }}</div>
-     <div> <span class="logo-image" >
-       <a href="https://www.menasa.net/" target="_blank">
-          <menasalogo />
-          </a>
-      </span>
+      <div class="logo-svg-footer">
+<img src="https://www.menasa.net/wp-content/themes/msan/images/footer-logo.svg" />
+      </div>
+      <div>
+     <div class="text-blue"> {{ hala }} {{ by }} {{menasatext}}</div>
+      <div class="rights">{{rights}}</div>
+
     </div>
     </div>
     <div v-if="isVouncherOpen">
@@ -292,12 +301,16 @@ import linkedin from "../components/icons/Linkedin";
 import whatsApp from "../components/icons/whatsApp";
 import email from "../components/icons/email";
 import phone from "../components/icons/phone";
+import cartIcon from "../components/icons/cartIcon";
+import webIcon from "../components/icons/webIcon";
+import locationPin from "../components/icons/locationPin";
+
 
 import twitter from "../components/icons/twitter";
 import printest from "../components/icons/printest";
 import snapchat from "../components/icons/snapchat";
 import lang from "../mixins/language";
-import Menasalogo from '../components/icons/menasalogo.vue';
+import Menasalogo from '../components/icons/menasalogo';
 const dateFormat = require("dateformat");
 
 export default {
@@ -329,7 +342,10 @@ export default {
     phone,
     twitter,
     printest,
-    Menasalogo
+    Menasalogo,
+    cartIcon,
+    webIcon,
+    locationPin
   },
   data() {
     
@@ -347,6 +363,16 @@ export default {
       this.getData();
   },
   computed: {
+        rights(){
+           return !this.$store.state.lang ? 
+      "All rights © reserved Menasa 2020" :
+      "جميع الحقوق محفوظة © منصة 2020 "
+    },
+    sitevisit(){
+      return !this.$store.state.lang
+        ? "Visit site"
+        : "زيارة الموقع";
+    },
     findUs() {
       return !this.$store.state.lang
         ? "Find us also on"
@@ -370,7 +396,7 @@ export default {
     visit() {
       return !this.$store.state.lang
         ? "Visit our Website"
-        : " زيارة موقعنا الإلكتروني ";
+        : "الموقع الإلكتروني ";
     },
         closed() {
       return !this.$store.state.lang
@@ -386,6 +412,11 @@ export default {
                   return !this.$store.state.lang
         ? "Book a demo"
         : "استكشف منصة";
+    },
+    menasatext(){
+                        return !this.$store.state.lang
+        ? "Menasa"
+        : "منصة";
     },
     menasa(){
       return this.$route.params.id === 'menasa'
@@ -454,6 +485,7 @@ h2 {
 .item-contents {
   max-width: 700px;
   margin: 0 auto;
+  padding-top: 50px;
 }
 @media (max-width: 700px) {
   .item-contents {
@@ -470,11 +502,12 @@ h2 {
   cursor: pointer;
   max-width: 700px;
   margin: 0 auto;
+  position: relative;
 }
 .img-main-details img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
 }
 .items {
   display: grid;
@@ -482,24 +515,88 @@ h2 {
   grid-gap: 15px;
 }
 .menu-item {
-  margin: 20px 0;
+      margin: 35px 0;
+      position: relative;
+    box-shadow: 0 10px 15px rgb(221 234 246 / 50%);
+    border-radius: 10px;
+    padding: 10px;
+
 }
 .branch {
   width: 100%;
   height: 200px;
   overflow: hidden;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 .branch.img {
-  /* border: 1px solid #eaeaea; */
+  border: 1px solid #eaeaea;
 }
+
 .branch img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   margin: 0;
   border-radius: 10px;
+}
+.branch .order-link {
+     width: 60px;
+    height: 47px;
+    position: absolute;
+    margin: auto;
+    right: auto;
+    top: auto;
+    left: 20px;
+    right: auto;
+    z-index: 12;
+    top: 184px;
+    text-align: center;
+    border-radius: 20%;
+    padding: 4px;
+    background: white;
+    box-shadow: 0 10px 15px rgb(221 234 246 / 50%);
+    transition: .1s;
+}
+.branch .order-link .order-icon span {
+  display: none;
+}
+.branch .order-link .order-icon {
+    border-radius: 20%;
+    background: #5A5B88;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.branch .order-link .order-icon svg {
+  width: 60%;
+  /* height: 30px; */
+}
+.branch .order-link img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.branch .order-link:hover {
+  width: 140px;
+}
+.branch .order-link:hover .order-icon { 
+  background: blue;
+    border-radius: 10px;
+    justify-content: flex-end;
+    padding: 1px 10px;
+}
+.branch .order-link:hover span {
+  display: block;
+  color: white;
+  font-size: 14px;
+}
+.branch .order-link:hover .order-icon svg {
+  width: 30px  !important; 
 }
 .item-title {
   font-size: 20px;
@@ -538,7 +635,7 @@ a.visit:hover {
   /* width: 35%; */
 }
 
-.order-link .link {
+.direction-link .link {
   color: #f76f87;
   font-size: 16px;
   border: 1px solid #f76f87;
@@ -551,16 +648,16 @@ a.visit:hover {
   white-space: nowrap;
 }
 @media (max-width: 780px) {
-  .order-link .link {
+  .direction-link .link {
     /* font-size: 2.1vmin; */
   }
 }
 @media (max-width: 380px) {
-  .order-link .link {
+  .direction-link .link {
     font-size: 4.1vmin;
   }
 }
-.order-link .link:hover {
+.direction-link .link:hover {
   color: white;
   background: #f76f87;
   transition: 0.2s;
@@ -594,16 +691,24 @@ h3 {
   flex-wrap: wrap;
 }
 .social-links > div {
-  margin: 15px 15px 0 0;
+  margin: 0 0 0 15px;
 }
 .social-link {
   margin-right: 20px;
+  background: #F5FAFF;
+  border-radius: 50%;
+  padding:10px;
 }
+
 .facebook svg {
   color: #4267b2;
 }
 .instagram svg {
   color: #f76f87;
+}
+.social-link svg {
+  width: 30px;
+  height: 30px;
 }
 .text-center {
   text-align: center;
@@ -775,20 +880,94 @@ a:visited {
   align-items: center;
 }
 
-.profile-img {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid wheat;
-  margin: 5px 0;
+.site-visit {
+  width: 150px;
+  height: 50px;
+  position: absolute;
+  margin: auto;
+  right:auto;
+  left: 40px;
+  top: auto;
+  bottom: -26px;
+  text-align: center;
+  border-radius: 26px;
+  padding: 8px;
+  color: white;
+  background: #1574f6;
+  box-shadow: 0 10px 15px rgba(221, 234, 246, 0.5);
+      display: flex;
+    justify-content: center;
+    align-items: center;
+
+
 }
+@media (max-width: 700px){
+  .site-visit {
+    font-size: 13px;
+    width: 28vw;
+    height: auto;
+    position: absolute;
+    margin: auto;
+    right: auto;
+    left: 4vw;
+    top: auto;
+    bottom: -16px;
+    text-align: center;
+    border-radius: 25px;
+    padding: 6px;
+    color: white;
+    background: #1574f6;
+    box-shadow: 0 10px 15px rgb(221 234 246 / 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.profile-img {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  margin: auto;
+  left:auto;
+  right: 40px;
+  top: auto;
+  bottom: -33px;
+  text-align: center;
+  border-radius: 10%;
+  padding: 6px;
+  background: white;
+  box-shadow: 0 10px 15px rgba(221, 234, 246, 0.5);
+  
+}
+@media (max-width: 700px){
+.profile-img {
+
+width: 60px;
+    height: 60px;
+    position: absolute;
+    margin: auto;
+    left: auto;
+    right: 7vw;
+    top: auto;
+    bottom: -29px;
+    text-align: center;
+    border-radius: 10%;
+    padding: 6px;
+    background: white;
+    box-shadow: 0 10px 15px rgb(221 234 246 / 50%);
+}
+}
+
 .main-title {
   margin: 10px;
+  margin-right: 0;
 }
 .profile-img img {
   width: 100%;
   height: 100%;
+  border-radius: 10%;
+
   object-fit: contain;
   /* background: rgb(225, 225, 225); */
 }
@@ -806,15 +985,27 @@ span {
   padding-top: 20px;
 }
 .footer {
-  justify-content: center;
-  align-content: center;
+  /* justify-content: center; */
   display: flex;
-  text-align: center;
-  margin-top: 10px;
+  margin: 10px;
   padding-bottom: 20px;
-  font-size: 18px;
-}
+  font-size: 16px;
+      margin: 0px  auto;
+    max-width: 700px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 
+    position: relative;
+    bottom: 0;
+    padding:15px 10px;
+    box-shadow:.2px 1px 15px 5px rgb(221 234 246 / 50%);
+        align-items: center;
+
+}
+.logo-svg-footer img {
+  
+  margin-left: 10px;
+}
 .logo-image {
   margin-left: -2px;
 }
@@ -823,10 +1014,7 @@ span {
   height: 100%;
   object-fit: contain;
 }
-.footer > div {
-      display: flex;
-    align-items: center;
-}
+
 .logo-image svg{
   width: 85px;
   height: 85px;
@@ -906,4 +1094,21 @@ span {
 .additional-links a {
   color: #1574f6;
 }
+
+.icon-wrap {
+  background:rgb(56, 201, 253,.1);
+  border-radius: 20px;
+  padding: 20px;
+  margin-left: 15px;
+
+}
+.icon-wrap svg{
+  width: 27px;
+  height: 27px;
+}
+
+.text-blue {
+  color: #1574f6;
+}
 </style>
+
