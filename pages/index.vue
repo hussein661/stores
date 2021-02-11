@@ -7,7 +7,7 @@
     </div>
     <div class="page-title-wrapper">
       <div class="page-title">
-        <span class="hala">{{ hala }}</span> {{ by }} 
+        {{ hala }} {{ by }} 
         <span class="logo-image"
           ><a href="https://www.menasa.net/" target="_blank">
             <!-- <img :src="require('~/static/menasa-logo.jpg')" /> -->
