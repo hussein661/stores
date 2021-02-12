@@ -309,7 +309,10 @@ color: #2a81fb;
 
 .loader-wrap {
   position: relative;
+
 }
+
+
 .loader-wrap::before {
   position: absolute;
   left: 10px;
@@ -317,9 +320,8 @@ color: #2a81fb;
   width: 150px;
   height: 85%;
   content: '';
-     background: linear-gradient(to right, transparent 0%, rgb(255, 255, 255) 50%, transparent 100%);
-
-    animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+  background: linear-gradient(to right, transparent 0%, rgb(255, 255, 255) 50%, transparent 100%);
+  animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 
 }
 @keyframes load {
