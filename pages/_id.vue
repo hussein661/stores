@@ -423,27 +423,27 @@ export default {
     }
   },
     async asyncData(context) {
-      const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
-      const ts = new Date().getTime() / 1000;
-     return context.$storyapi
-        .get(
-          `cdn/stories/stores/` +
-            context.params.id,
-          {
-            cv: ts
-          }
-        )
-        .then(res => {
-          return {store:res.data.story};
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    //   const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
+    //   const ts = new Date(date).getTime() / 1000;
+    //  return context.$storyapi
+    //     .get(
+    //       `cdn/stories/stores/` +
+    //         context.params.id,
+    //       {
+    //         cv: ts
+    //       }
+    //     )
+    //     .then(res => {
+    //       return {store:res.data.story};
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
       },
   methods: {
     getData() {
       const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
-      const ts = new Date().getTime() / 1000;
+      const ts = new Date(date).getTime() / 1000;
       this.$storyapi
         .get(
           `cdn/stories/${this.$store.state.lang}stores/` +

@@ -1,5 +1,6 @@
 <template>
   <div class="page-wrapper">
+
     <div class="langChange" @click="changeLang">{{ lang ? "EN" : "ع" }}</div>
 
     <div class="logo-image-menasa">
@@ -59,7 +60,7 @@
       <div class="address-details">{{addressDetails}}</div>
       <div class="rights">{{rights}}</div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -119,7 +120,7 @@ export default {
     getData() {
       this.$nuxt.$loading.start();
       const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
-      const ts = new Date().getTime() / 1000;
+      const ts = new Date(date).getTime() / 1000;
       const url = `https://api.storyblok.com/v1/cdn/stories/?starts_with=${this.$store.state.lang}stores%2F&version=published&cv=${ts}&token=YPJhIqzQepWQtUNNSVIPXAtt&per_page=100&sort_by=position:asc&clear=auto`;
       axios.get(url).then(res => {
         this.stores = res.data.stories;
@@ -142,17 +143,17 @@ export default {
     },
     addstitle(){
       return !this.$store.state.lang ? 
-      "Are you ready to start your ecommerce journey ?" :
+      "Ready to pocket more online orders and jumpstart your business ?" :
       "مستعد لبدأ رحلتك التجارية ؟"
     },
         addsDesc(){
       return !this.$store.state.lang ? 
-      "We are here to help you create your website and enter your content" :
+      "Get your website up in less than 48 hours." :
       "نحن هنا لمساعدتك لانشاء متجرك الإلكتروني  وإدخال محتواك"
     },
     addsBtn(){
             return !this.$store.state.lang ? 
-      "Start your jouneh now " :
+      "Get started today 🤝" :
       " إبدأ رحلتك الآن 🤝"
     },
         addressDetails(){
@@ -269,29 +270,26 @@ span {
 
 .ads .title {
 color: #2a81fb;
-    padding: 5px;
-    font-size: 19px;
+padding: 15px;
+    font-size: 20px;
     font-weight: bolder;
     white-space: normal;
 }
 .ads .desc {
   padding: 10px;
+  margin-bottom: 20px;
 }
 .ads a {
-  padding: 14px 28px;
-  margin: 0 auto;
-  max-width: 200px;
-  background: #2a81fb;
-  color: white;
-  border-radius: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  font-size: 1.1rem;
-  text-decoration: none;
-  width: auto;
-  box-shadow: 0 10px 15px rgba(221, 234, 246, 0.5);
+    padding: 10px 28px;
+    margin: 25px auto;
+
+    background: #2a81fb;
+    color: white;
+    border-radius: 35px;
+    border: none;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 10px 15px rgb(221 234 246 / 50%);
 }
 .ads button img{
   width:30px;
@@ -332,5 +330,9 @@ color: #2a81fb;
     left: 90%;
     /* right: 0; */
   }
+}
+
+.menasa-logo-footer img {
+  margin-bottom: 10px;
 }
 </style>
