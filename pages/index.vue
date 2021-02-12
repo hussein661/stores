@@ -1,5 +1,7 @@
 <template>
   <div class="page-wrapper">
+    <div class="langChange" @click="changeLang">{{ lang ? "EN" : "ع" }}</div>
+
     <div class="logo-image-menasa">
       <a href="https://www.menasa.net/" target="_blank">
         <menasalogo />
@@ -34,7 +36,7 @@
         ></a>
       </div> -->
     </div>
-    <div class="store-array" v-if="stores && stores.length">
+    <div class="store-array" v-if="!stores && stores.length">
       <div v-for="store in filterStores(stores)" :key="store.id">
         <div class="store" @click="$router.push('/' + store.slug)">
           <Store :store="store" />
@@ -42,7 +44,7 @@
       </div>
     </div>
     <div v-else class="store-array" >
-            <div v-for="(load,i) in 10" :key="i">
+            <div class="loader-wrap" v-for="(load,i) in 10" :key="i">
       <loaders />
             </div>
     </div>
@@ -101,6 +103,16 @@ export default {
     });
   },
   methods: {
+        changeLang() {
+      const langp = "ar/";
+      if (this.$store.state.lang === langp) {
+        this.$store.commit("setLang", "");
+        localStorage.removeItem("lang");
+      } else {
+        this.$store.commit("setLang", langp);
+        localStorage.setItem("lang", langp);
+      }
+    },
     filterStores(stores) {
       return stores.filter(store => store.slug !== "menasa");
     },
@@ -145,8 +157,8 @@ export default {
     },
         addressDetails(){
       return !this.$store.state.lang ? 
-      "Kuwait, Omar abed Elaziz street, Loaloa Maseya building - 1st Floor" :
-      " الكويت، شارع عمر بن عبد العزيز، عمارة اللؤلؤة الماسية - الطابق الاول"
+      "Ahmad Al Jaber St Sharq, Kuwait City Floor 12, City Tower, Office No. 1203" :
+      "شارع احمد الجابر ، شرق ، مدينة الكويت الطابق 12 ، برج المدينة ، مكتب رقم 1203"
     },
     rights(){
            return !this.$store.state.lang ? 
@@ -256,10 +268,11 @@ span {
 }
 
 .ads .title {
-  color: #2a81fb;
-  padding: 10px;
-  font-size: 20px;
-  font-weight: bolder;
+color: #2a81fb;
+    padding: 5px;
+    font-size: 19px;
+    font-weight: bolder;
+    white-space: normal;
 }
 .ads .desc {
   padding: 10px;
@@ -294,5 +307,28 @@ span {
   margin: 20px 0;
 }
 
+.loader-wrap {
+  position: relative;
+}
+.loader-wrap::before {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 150px;
+  height: 85%;
+  content: '';
+     background: linear-gradient(to right, transparent 0%, rgb(255, 255, 255) 50%, transparent 100%);
 
+    animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+
+}
+@keyframes load {
+  from {
+    left: 10px;
+  }
+  to {
+    left: 100%;
+    /* right: 0; */
+  }
+}
 </style>

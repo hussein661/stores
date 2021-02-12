@@ -1,7 +1,6 @@
 <template>
   <div :class="{fontar:lang === 'ar/',en:lang !== 'ar/'}">
     <nuxt />
-    <div class="langChange" @click="changeLang">{{ lang ? "En" : "Ar" }}</div>
   </div>
 </template>
 <script>
@@ -17,18 +16,7 @@ export default {
     }
 
   },
-  methods: {
-    changeLang() {
-      const langp = "ar/";
-      if (this.$store.state.lang === langp) {
-        this.$store.commit("setLang", "");
-        localStorage.removeItem("lang");
-      } else {
-        this.$store.commit("setLang", langp);
-        localStorage.setItem("lang", langp);
-      }
-    }
-  },
+
   computed: {
     lang() {
       return this.$store.state.lang;

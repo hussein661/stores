@@ -69,7 +69,7 @@ export default {
   position: relative;
   margin: 20px auto;
   max-width: 700px;
-  width: 90%;
+  width: 85%;
   max-height: 354px;
   /* min-height: 120px; */
   box-shadow: 0 10px 15px rgba(221, 234, 246, 0.5);
