@@ -36,7 +36,7 @@
         ></a>
       </div> -->
     </div>
-    <div class="store-array" v-if="!stores && stores.length">
+    <div class="store-array" v-if="stores && stores.length">
       <div v-for="store in filterStores(stores)" :key="store.id">
         <div class="store" @click="$router.push('/' + store.slug)">
           <Store :store="store" />
@@ -329,7 +329,7 @@ color: #2a81fb;
     left: 10px;
   }
   to {
-    left: 100%;
+    left: 90%;
     /* right: 0; */
   }
 }
