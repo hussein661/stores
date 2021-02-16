@@ -327,7 +327,7 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: `Check now ${this.store.content.title} ${this.store.content.type} at Menasa`
+          content: `اكتشف الان ${this.store.content.title} ${this.store.content.type} على منصة`
         }
       ]
     };
