@@ -39,7 +39,7 @@
     </div>
     <div class="store-array" v-if="stores && stores.length">
       <div v-for="store in filterStores(stores)" :key="store.id">
-        <div class="store" @click="$router.push('/' + store.slug)">
+        <div class="store" @click="$router.push('/ar/' + store.slug)">
           <Store :store="store" />
         </div>
       </div>
@@ -64,12 +64,12 @@
 </template>
 
 <script>
-import Store from "../components/Store";
-import loaders from "../components/icons/loaders";
+import Store from "../../components/Store";
+import loaders from "../../components/icons/loaders";
 
 import axios from "axios";
-import lang from "../mixins/language";
-import menasalogo from "../components/icons/menasalogo";
+import lang from "../../mixins/language";
+import menasalogo from "../../components/icons/menasalogo";
 
 const dateFormat = require("dateformat");
 
@@ -192,7 +192,7 @@ span {
 .page-wrapper {
   padding-top: 80px;
   position: relative;
-  background-image: url('../assets/images/bg.png');
+  background-image: url('../../assets/images/bg.png');
   background-repeat: no-repeat;
   background-attachment:fixed;
   background-size: cover;

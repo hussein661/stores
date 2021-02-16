@@ -295,22 +295,22 @@
 </template>
 
 <script>
-import facebook from "../components/icons/Facebook";
-import instagram from "../components/icons/Instagram";
-import linkedin from "../components/icons/Linkedin";
-import whatsApp from "../components/icons/whatsApp";
-import email from "../components/icons/email";
-import phone from "../components/icons/phone";
-import cartIcon from "../components/icons/cartIcon";
-import webIcon from "../components/icons/webIcon";
-import locationPin from "../components/icons/locationPin";
+import facebook from "../../components/icons/Facebook";
+import instagram from "../../components/icons/Instagram";
+import linkedin from "../../components/icons/Linkedin";
+import whatsApp from "../../components/icons/whatsApp";
+import email from "../../components/icons/email";
+import phone from "../../components/icons/phone";
+import cartIcon from "../../components/icons/cartIcon";
+import webIcon from "../../components/icons/webIcon";
+import locationPin from "../../components/icons/locationPin";
 
 
-import twitter from "../components/icons/twitter";
-import printest from "../components/icons/printest";
-import snapchat from "../components/icons/snapchat";
-import lang from "../mixins/language";
-import Menasalogo from '../components/icons/menasalogo';
+import twitter from "../../components/icons/twitter";
+import printest from "../../components/icons/printest";
+import snapchat from "../../components/icons/snapchat";
+import lang from "../../mixins/language";
+import Menasalogo from '../../components/icons/menasalogo';
 import axios from 'axios';
 const dateFormat = require("dateformat");
 
@@ -422,9 +422,11 @@ export default {
     }
   },
     async asyncData({params,store}) {
+      console.log(store)
       const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
       const ts = new Date().getTime() / 1000;
-      const url = `https://api.storyblok.com/v1/cdn/stories/stores/${params.id}?&cv=${ts}&token=YPJhIqzQepWQtUNNSVIPXAtt&clear=auto`;
+      const lang = "ar/"
+      const url = `https://api.storyblok.com/v1/cdn/stories/${lang}stores/${params.id}?&cv=${ts}&token=YPJhIqzQepWQtUNNSVIPXAtt&clear=auto`;
       const storeData = await axios.get(
           `${url}`,
           {
