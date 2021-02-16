@@ -76,7 +76,7 @@
                 {{ store.content.discount[0].discount_description }}
               </div>
             </div>
-            <div class="sendme">
+            <div class="sendme" v-show="false">
               <button class="sendv-btn" @click="isVouncherOpen = true">
                 Send me the voucher
               </button>
@@ -286,7 +286,7 @@
             <input placeholder="enter your number" />
           </div>
           <div class="button">
-            <button class="send_me">Send me the voucher</button>
+            <button class="send_me" >Send me the voucher</button>
           </div>
         </div>
       </div>
@@ -443,7 +443,7 @@ export default {
   methods: {
     getData() {
       const date = dateFormat(new Date(), "yyyy/mm/dd HH:00:00");
-      const ts = new Date(date).getTime() / 1000;
+      const ts = new Date().getTime() / 1000;
       this.$storyapi
         .get(
           `cdn/stories/${this.$store.state.lang}stores/` +
