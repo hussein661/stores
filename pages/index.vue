@@ -143,36 +143,36 @@ export default {
   },
   computed: {
     hala() {
-      return !this.$store.state.lang ? "Hala" : "هلا";
+      return true ? "Hala" : "هلا";
     },
     by() {
-      return !this.$store.state.lang ? "by" : "من";
+      return true ? "by" : "من";
     },
     menasa() {
-      return !this.$store.state.lang ? "Menasa" : "منصة";
+      return true ? "Menasa" : "منصة";
     },
     addstitle(){
-      return !this.$store.state.lang ? 
+      return true ? 
       "Ready to pocket more online orders and jumpstart your business ?" :
       "مستعد لبدأ رحلتك التجارية ؟"
     },
         addsDesc(){
-      return !this.$store.state.lang ? 
+      return true ? 
       "Get your website up in less than 48 hours." :
       "نحن هنا لمساعدتك لانشاء متجرك الإلكتروني  وإدخال محتواك"
     },
     addsBtn(){
-            return !this.$store.state.lang ? 
+            return true ? 
       "Get started today 🤝" :
       " إبدأ رحلتك الآن 🤝"
     },
         addressDetails(){
-      return !this.$store.state.lang ? 
+      return true ? 
       "Ahmad Al Jaber St Sharq, Kuwait City Floor 12, City Tower, Office No. 1203" :
       "شارع احمد الجابر ، شرق ، مدينة الكويت الطابق 12 ، برج المدينة ، مكتب رقم 1203"
     },
     rights(){
-           return !this.$store.state.lang ? 
+           return true ? 
       "All rights © reserved Menasa 2020" :
       "جميع الحقوق محفوظة © منصة 2020 "
     },

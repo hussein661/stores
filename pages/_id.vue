@@ -363,57 +363,57 @@ export default {
 
   computed: {
         rights(){
-           return !this.$store.state.lang ? 
+           return true ? 
       "All rights © reserved Menasa 2020" :
       "جميع الحقوق محفوظة © منصة 2020 "
     },
     sitevisit(){
-      return !this.$store.state.lang
+      return true
         ? "Visit site"
         : "زيارة الموقع";
     },
     findUs() {
-      return !this.$store.state.lang
+      return true
         ? "Find us also on"
         : "تواصل معنا ايضا عبر";
     },
     comedine() {
-      return !this.$store.state.lang ? "Come dine-in!" : "يمكنك زيارتنا في";
+      return true ? "Come dine-in!" : "يمكنك زيارتنا في";
     },
     hala() {
-      return !this.$store.state.lang ? "Hala" : "هلا";
+      return true ? "Hala" : "هلا";
     },
     by() {
-      return !this.$store.state.lang ? "by" : "من";
+      return true ? "by" : "من";
     },
     ordernow() {
-      return !this.$store.state.lang ? "Order now" : "اطلب الآن";
+      return true ? "Order now" : "اطلب الآن";
     },
     getDirection() {
-      return !this.$store.state.lang ? "Get direction" : "الاتجاه";
+      return true ? "Get direction" : "الاتجاه";
     },
     visit() {
-      return !this.$store.state.lang
+      return true
         ? "Visit our Website"
         : "الموقع الإلكتروني ";
     },
         closed() {
-      return !this.$store.state.lang
+      return true
         ? "closed"
         : "مغلق";
     },
     discoverproducts(){
-            return !this.$store.state.lang
+            return true
         ? "Discover products"
         : "اكتشف المنتجات";
     },
     book(){
-                  return !this.$store.state.lang
+                  return true
         ? "Book a demo"
         : "استكشف منصة";
     },
     menasatext(){
-                        return !this.$store.state.lang
+                        return true
         ? "Menasa"
         : "منصة";
     },
