@@ -173,8 +173,8 @@ export default {
     },
     rights(){
            return true ? 
-      "All rights © reserved Menasa 2020" :
-      "جميع الحقوق محفوظة © منصة 2020 "
+      "All rights © reserved Menasa 2021" :
+      "جميع الحقوق محفوظة © منصة 2021 "
     },
     }
 };

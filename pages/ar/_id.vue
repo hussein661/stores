@@ -355,7 +355,7 @@ export default {
       isVouncherOpen: false,
       store: { content: {} },
       googlePlayLogo:
-        "https://stratushealthcare.ie/wp-content/uploads/2020/02/google-play-badge.png",
+        "https://stratushealthcare.ie/wp-content/uploads/2021/02/google-play-badge.png",
       appStoreLogo:
         "https://www.my-white.eu/wp-content/uploads/2017/04/app-store-logo.png"
     };
@@ -364,8 +364,8 @@ export default {
   computed: {
         rights(){
            return false ? 
-      "All rights © reserved Menasa 2020" :
-      "جميع الحقوق محفوظة © منصة 2020 "
+      "All rights © reserved Menasa 2021" :
+      "جميع الحقوق محفوظة © منصة 2021 "
     },
     sitevisit(){
       return false
