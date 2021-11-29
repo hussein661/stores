@@ -151,20 +151,25 @@ export default {
     menasa() {
       return true ? "Menasa" : "منصة";
     },
+    
+
+
+
+
     addstitle(){
       return true ? 
-      "Ready to pocket more online orders and jumpstart your business ?" :
-      "مستعد لبدأ رحلتك التجارية ؟"
+      "Grab more online orders for your business or restaurant – always 0% commission" :
+      "احصل على المزيد من الطلبات عبر الإنترنت لعملك أو مطعمك - عمولة 0٪ دائمًا"
     },
         addsDesc(){
       return true ? 
-      "Get your website up in less than 48 hours." :
-      "نحن هنا لمساعدتك لانشاء متجرك الإلكتروني  وإدخال محتواك"
+      "Get your site up and running in 24 hours" :
+      "احصل على موقعك وتشغيله في غضون 24 ساعة"
     },
     addsBtn(){
             return true ? 
-      "Get started today 🤝" :
-      " إبدأ رحلتك الآن 🤝"
+      "Start today 🤝" :
+      " إبدأ الآن 🤝"
     },
         addressDetails(){
       return true ? 
