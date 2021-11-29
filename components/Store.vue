@@ -26,11 +26,12 @@ export default {
 </script>
 
 <style>
+
+
 .typo {
   text-align: center;
   padding: 15px;
-  height: 50%;
-  padding-top: 14%;
+height: 40%;  padding-top: 14%;
   background: white;
 }
 .store-name {

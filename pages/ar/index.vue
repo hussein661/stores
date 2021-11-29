@@ -243,6 +243,7 @@ span {
   max-width: 700px;
   margin: 0 auto;
   display: grid;
+  grid-gap: 25px 0;
   grid-template-columns: repeat(2, 50%);
 }
 @media (max-width: 700px) {
